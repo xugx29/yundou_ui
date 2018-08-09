@@ -9,5 +9,7 @@
 </script>
 
 <style scoped lang="scss">
-
+.blue{
+  color: #000;
+}
 </style>

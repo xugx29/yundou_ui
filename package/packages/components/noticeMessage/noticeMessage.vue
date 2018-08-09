@@ -1,5 +1,5 @@
 <template>
-  <div>123131231231</div>
+  <div class="blue">123131231231</div>
 </template>
 
 <script>
@@ -9,5 +9,7 @@
 </script>
 
 <style scoped lang="scss">
-
+.blue{
+  color: #000;
+}
 </style>
