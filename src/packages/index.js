@@ -6,7 +6,6 @@ const components = [
   NoticeMessage
 ]
 const install = function (Vue) {
-  if (install.installed) return;
   components.map((c) => {
     Vue.component(c.name, c);
   });
@@ -14,6 +13,10 @@ const install = function (Vue) {
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
+}
+export default {
+  install,
+  NoticeMessage
 }
 export {
   install,
