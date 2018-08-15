@@ -1,6 +1,6 @@
 {
   "name": "yd-ui",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "a ui project",
   "author": "xuguangxing1993",
   "main": "package/ydui.min.js",
