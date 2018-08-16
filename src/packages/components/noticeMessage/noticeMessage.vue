@@ -1,10 +1,19 @@
 <template>
-  <div class="blue">123131231231</div>
+  <div>
+    <div class="blue">default text</div>
+    <div class="red">{{text}}</div>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'noticeMessage'
+    name: 'noticeMessage',
+    props: {
+      text: String
+    },
+    created () {
+      console.log(1)
+    }
   }
 </script>
 
