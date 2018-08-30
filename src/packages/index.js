@@ -1,13 +1,15 @@
 import './styles/index.scss'
 
 import NoticeMessage from './components/noticeMessage/index.js'
-
+import Message from './components/message/index'
 const components = [
   NoticeMessage
 ]
 const install = function (Vue) {
   components.map((c) => {
+    console.log(c);
     Vue.component(c.name, c);
+    Vue.prototype.$message = Message.service;
   });
 }
 
@@ -16,9 +18,11 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 export default {
   install,
-  NoticeMessage
+  NoticeMessage,
+  Message
 }
 export {
   install,
-  NoticeMessage
+  NoticeMessage,
+  Message
 }

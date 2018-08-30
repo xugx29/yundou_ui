@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
-    <noticeMessage></noticeMessage>
+    <button @click="showMessage">123</button>
   </div>
 </template>
 
@@ -12,6 +12,16 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  methods: {
+    showMessage () {
+      this.$message({
+        message: '测试文字消息'
+      })
+    }
+  },
+  created () {
+
   }
 }
 </script>

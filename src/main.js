@@ -2,9 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import YDUI from './packages/index'
-console.log(YDUI)
-Vue.use(YDUI);
+import {Message} from './packages/index'
+Vue.use(Message);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
