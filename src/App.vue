@@ -16,7 +16,8 @@ export default {
   methods: {
     showMessage () {
       this.$message({
-        message: '测试文字消息'
+        type: 'normal',
+        message: '提示'
       })
     }
   },

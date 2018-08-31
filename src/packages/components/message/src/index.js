@@ -15,6 +15,11 @@ const defaults = {
 const Message = (options = {}) => {
   if (Vue.prototype.$isServer) return;
   options = merge({}, defaults, options);
+  if (typeof options === 'string') {
+    options = {
+      message: options
+    };
+  }
   let parent = options.body ? document.body : options.target;
   let instance = new MessageConstructor({
     el: document.createElement('div'),
@@ -28,5 +33,17 @@ const Message = (options = {}) => {
   });
   return instance;
 };
+
+['success', 'warning', 'normal', 'error'].forEach(type => {
+  Message[type] = options => {
+    if (typeof options === 'string') {
+      options = {
+        message: options
+      };
+    }
+    options.type = type;
+    return Message(options);
+  };
+});
 
 export default Message

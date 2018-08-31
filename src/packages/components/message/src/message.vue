@@ -75,7 +75,7 @@
 }
 .messageBox{
   position: fixed;
-  top:100px;
+  top:1000px;
   left:50%;
   margin-left:-200px;
   box-sizing: border-box;
