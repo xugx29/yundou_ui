@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import messageVue from './message';
-import merge from '@/utils/merge'
+import merge from '../../../../utils/merge'
 
 const MessageConstructor = Vue.extend(messageVue);
 

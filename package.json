@@ -1,6 +1,6 @@
 {
   "name": "yd-ui",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "a ui project",
   "author": "xuguangxing1993",
   "main": "package/ydui.min.js",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
+    "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -76,6 +77,7 @@
     "shelljs": "^0.7.6",
     "sinon": "^6.1.5",
     "sinon-chai": "^3.2.0",
+    "style-loader": "^0.23.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
