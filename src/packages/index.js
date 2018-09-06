@@ -1,5 +1,5 @@
 import './styles/index.scss'
-
+import 'font-awesome/css/font-awesome.css'
 import NoticeMessage from './components/noticeMessage/index.js'
 import Message from './components/message/index'
 const components = [

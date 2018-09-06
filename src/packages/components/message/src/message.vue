@@ -1,7 +1,13 @@
 <template>
   <transition name="fade">
     <div class="messageBox" v-if="visible" :class="type">
-      {{message}}
+      <!--<i class="fa fa-times" v-if="type != 'normal'" :class="className"></i>-->
+      <i class="fa fa-warning" v-if="type == 'warning'" :class="className"></i>
+      <i class="fa fa-check" v-if="type == 'success'" :class="className"></i>
+      <i class="fa fa-times" v-if="type == 'error'" :class="className"></i>
+      <em class="lf" v-if="type != 'normal'"></em>
+      <p :class="{'pd': type != 'normal'}">{{message}}</p>
+      <em class="rt" v-if="type != 'normal'"></em>
     </div>
   </transition>
 </template>
@@ -12,6 +18,7 @@
     data () {
       return {
         message: '',
+        className: '',
         center: true,
         type: 'normal',
         duration: 2500,
@@ -30,7 +37,15 @@
       }
     },
     created () {
+      if (this.type == 'success') {
 
+      } else if (this.type == 'warning') {
+
+      } else if (this.type == 'error') {
+
+      } else {
+        this.className = 'check'
+      }
     },
     mounted () {
       this.startTimer();
@@ -67,6 +82,29 @@
 </script>
 
 <style scoped lang="scss">
+  i.fa{
+    display: block;
+    position: absolute;
+    left:20px;
+    top:50%;
+    transform: translateY(-50%);
+    font-weight: normal;
+    font-size:18px;
+    margin-left:10px;
+    -webkit-text-stroke: 1px;
+  }
+  em{
+    display: inline-block;
+    &.lf{
+      width:120px;
+    }
+    &.rt{
+      width:50px;
+    }
+  }
+  .fa-warning{
+    border:1px solid transparent;
+  }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .8s;
 }
@@ -77,10 +115,10 @@
   position: fixed;
   top:1000px;
   left:50%;
-  margin-left:-200px;
+  margin-left:-190px;
   box-sizing: border-box;
-  width:400px;
-  min-height: 70px;
+  width:380px;
+  min-height: 60px;
   max-height:105px;
   border:1px solid #ebeef5;
   background: #edf2fc;
@@ -89,10 +127,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   word-break: break-all;
   padding:10px;
   font-size:.9em;
   cursor: default;
+  p{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align: center;
+    &.pd{
+
+    }
+  }
   &.error{
     border:1px solid #fde2e2;
     color:#f56c6c;

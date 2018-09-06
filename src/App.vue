@@ -15,9 +15,8 @@ export default {
   },
   methods: {
     showMessage () {
-      this.$message({
-        type: 'normal',
-        message: '提示'
+      this.$message.success({
+        message: '提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提'
       })
     }
   },
