@@ -1,10 +1,9 @@
 import './styles/index.scss'
-import 'font-awesome/css/font-awesome.css'
-import NoticeMessage from './components/noticeMessage/index.js'
+import MessageBox from './components/MessageBox/index.js'
 import Message from './components/message/index'
 const components = [
-  NoticeMessage
-]
+  MessageBox
+];
 const install = function (Vue) {
   components.map((c) => {
     console.log(c);
@@ -18,11 +17,11 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 export default {
   install,
-  NoticeMessage,
+  MessageBox,
   Message
 }
 export {
   install,
-  NoticeMessage,
+  MessageBox,
   Message
 }

@@ -1,6 +1,6 @@
 {
   "name": "yd-ui",
-  "version": "1.0.22",
+  "version": "1.0.27",
   "description": "a ui project",
   "author": "xuguangxing1993",
   "main": "package/ydui.min.js",
@@ -47,7 +47,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^1.1.4",
+    "file-loader": "^1.1.11",
     "font-awesome": "^4.7.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",

@@ -2,6 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
+    <MessageBox></MessageBox>
     <button @click="showMessage">123</button>
   </div>
 </template>
@@ -15,8 +16,9 @@ export default {
   },
   methods: {
     showMessage () {
-      this.$message.success({
-        message: '提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提提示提'
+      this.$message.normal({
+        message: '操作成功操作成功操作成功操作成功操作成功操作成功！',
+        duration: 3000
       })
     }
   },
@@ -28,7 +30,6 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

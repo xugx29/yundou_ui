@@ -2,12 +2,10 @@
   <transition name="fade">
     <div class="messageBox" v-if="visible" :class="type">
       <!--<i class="fa fa-times" v-if="type != 'normal'" :class="className"></i>-->
-      <i class="fa fa-warning" v-if="type == 'warning'" :class="className"></i>
-      <i class="fa fa-check" v-if="type == 'success'" :class="className"></i>
-      <i class="fa fa-times" v-if="type == 'error'" :class="className"></i>
-      <em class="lf" v-if="type != 'normal'"></em>
+      <i class="icon icon-warn" v-if="type == 'warning'" :class="className"></i>
+      <i class="icon icon-check" v-if="type == 'success'" :class="className"></i>
+      <i class="icon icon-close" v-if="type == 'error'" :class="className"></i>
       <p :class="{'pd': type != 'normal'}">{{message}}</p>
-      <em class="rt" v-if="type != 'normal'"></em>
     </div>
   </transition>
 </template>
@@ -82,28 +80,11 @@
 </script>
 
 <style scoped lang="scss">
-  i.fa{
-    display: block;
-    position: absolute;
-    left:20px;
-    top:50%;
-    transform: translateY(-50%);
+  i.icon{
+    margin-right:10px;
     font-weight: normal;
     font-size:18px;
     margin-left:10px;
-    -webkit-text-stroke: 1px;
-  }
-  em{
-    display: inline-block;
-    &.lf{
-      width:120px;
-    }
-    &.rt{
-      width:50px;
-    }
-  }
-  .fa-warning{
-    border:1px solid transparent;
   }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .8s;
@@ -112,31 +93,32 @@
   opacity: 0;
 }
 .messageBox{
+  z-index:10001;
   position: fixed;
   top:1000px;
   left:50%;
-  margin-left:-190px;
+  margin-left:-170px;
   box-sizing: border-box;
-  width:380px;
-  min-height: 60px;
-  max-height:105px;
+  width:340px;
+  height: 60px;
   border:1px solid #ebeef5;
   background: #edf2fc;
   color:#909399;
-  border-radius: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   align-content: center;
-  word-break: break-all;
-  padding:10px;
-  font-size:.9em;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding:5px 10px;
+  font-size:.95em;
   cursor: default;
   p{
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
     text-align: center;
+    font-size:.98em;
     &.pd{
 
     }
@@ -154,7 +136,7 @@
   &.warning{
     background-color: #fdf6ec;
     border-color: #faecd8;
-    color:#e6a23c;
+    color:#e6a23c !important;
   }
 }
 </style>
