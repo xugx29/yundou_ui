@@ -8,8 +8,8 @@
       <div class="MessageMainBox">
         <!--<p>{{content}}</p>-->
         <!--<p>{{appendixContent}}</p>-->
-        <p class="content">测试内容</p>
-        <p class="appendixContent" :class="{red: importantClass}">测试内容</p>
+        <p class="content">{{content}}</p>
+        <p class="appendixContent" :class="{red: importantClass}">{{appendixContent}}</p>
         <div class="buttonArea"><button @click="confrim" class="confirm">确定</button></div>
       </div>
     </div>
@@ -30,8 +30,14 @@
         default: '提示',
         type: String
       },
-      appendixContent: String,
-      content: String,
+      appendixContent: {
+          default: '',
+          type: String
+      },
+      content: {
+          default: '',
+          type: String
+      },
       showMessageBox: {
         default: true,
         type: Boolean

@@ -1,4 +1,4 @@
-#### 消息盒子(Message Box)
+#### Loading
 > 消息盒子为项目提供的是成功、警告、提示、错误的提醒，具体表现如下:
 
 ![success](../images/message/success.png)

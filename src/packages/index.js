@@ -1,4 +1,5 @@
-import './styles/index.scss'
+import './styles/global.scss'
+import './styles/font.scss'
 import MessageBox from './components/MessageBox/index.js'
 import Message from './components/message/index'
 const components = [

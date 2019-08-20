@@ -10,7 +10,8 @@
 | content | 消息内容 | string | - | - |
 | appendixContent | 附加说明 | string | - | - |
 | importantClass | 附加说明是否标红 | bool | - | - |
-##### 事件
+
+##### emit事件
 | 名称 | 说明 | 类型 | 可选值 | 默认值 |
 | :------: | :------: | :------: | :------: | :------: |
 | closeMessageBox | 关闭弹窗回调函数 | event | - | - |

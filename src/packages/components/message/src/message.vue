@@ -2,9 +2,9 @@
   <transition name="fade">
     <div class="messageBox" v-if="visible" :class="type">
       <!--<i class="fa fa-times" v-if="type != 'normal'" :class="className"></i>-->
-      <i class="icon icon-warn" v-if="type == 'warning'" :class="className"></i>
-      <i class="icon icon-check" v-if="type == 'success'" :class="className"></i>
-      <i class="icon icon-close" v-if="type == 'error'" :class="className"></i>
+      <i class="icon icon-warn" v-if="type == 'warning' && showIcon" :class="className"></i>
+      <i class="icon icon-check" v-if="type == 'success' && showIcon" :class="className"></i>
+      <i class="icon icon-close" v-if="type == 'error' && showIcon" :class="className"></i>
       <p :class="{'pd': type != 'normal'}">{{message}}</p>
     </div>
   </transition>
@@ -19,6 +19,7 @@
         className: '',
         center: true,
         type: 'normal',
+        showIcon: true,
         duration: 2500,
         visible: false,
         closed: false,
@@ -125,18 +126,18 @@
   }
   &.error{
     border:1px solid #fde2e2;
-    color:#f56c6c;
+    color:$error;
     background: #fef0f0;
   }
   &.success{
     background-color: #f0f9eb;
     border-color: #e1f3d8;
-    color:#67c23a;
+    color:$success;
   }
   &.warning{
     background-color: #fdf6ec;
     border-color: #faecd8;
-    color:#e6a23c !important;
+    color:$warning !important;
   }
 }
 </style>
