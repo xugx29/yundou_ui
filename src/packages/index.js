@@ -1,5 +1,8 @@
-import './styles/global.scss'
-import './styles/font.scss'
+import './styles/global.less';
+import './styles/color.less';
+import './styles/varibles.less';
+import './styles/mixin.less';
+import './styles/normalize.less';
 import MessageBox from './components/MessageBox/index.js'
 import Message from './components/message/index'
 const components = [

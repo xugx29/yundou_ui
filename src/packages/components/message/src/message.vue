@@ -80,7 +80,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
   i.icon{
     margin-right:10px;
     font-weight: normal;
@@ -126,18 +126,18 @@
   }
   &.error{
     border:1px solid #fde2e2;
-    color:$error;
+    color:@error;
     background: #fef0f0;
   }
   &.success{
     background-color: #f0f9eb;
     border-color: #e1f3d8;
-    color:$success;
+    color:@success;
   }
   &.warning{
     background-color: #fdf6ec;
     border-color: #faecd8;
-    color:$warning !important;
+    color:@warning !important;
   }
 }
 </style>

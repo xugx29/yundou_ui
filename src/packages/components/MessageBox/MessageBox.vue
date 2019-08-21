@@ -60,7 +60,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .MessageBox{
   position: fixed;
   top:50%;
