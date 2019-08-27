@@ -18,6 +18,7 @@
           <span class="userName">徐光星</span>
           <span class="arrowIcon"></span>
         </div>
+        <router-view/>
       </div>
   </div>
 </template>
