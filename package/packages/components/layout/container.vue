@@ -18,7 +18,12 @@
           <span class="userName">徐光星</span>
           <span class="arrowIcon"></span>
         </div>
-        <router-view/>
+      </div>
+      <div class="viewContainer">
+        <div class="viewMain">
+          <router-view/>
+        </div>
+        <div class="ad"></div>
       </div>
   </div>
 </template>
@@ -121,6 +126,23 @@
           width: 20px;
           height: 20px;
         }
+      }
+    }
+    .viewContainer{
+      padding: 20px;
+      height:500px;
+      display: flex;
+      .viewMain{
+        flex:1;
+        min-width: 1360px;
+        height:100%;
+        background:#fff;
+        margin-right:20px;
+      }
+      .ad{
+        width:240px;
+        flex-shrink: 0;
+        background: #fff;
       }
     }
   }
