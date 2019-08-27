@@ -1,6 +1,6 @@
 {
   "name": "yd-ui",
-  "version": "1.0.32",
+  "version": "1.0.34",
   "description": "yundou ui project",
   "author": "xugx29",
   "main": "package/ydui.min.js",
@@ -81,7 +81,7 @@
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
-    "vue-loader": "^13.3.0",
+    "vue-loader": "^14.2.0",
     "vue-style-loader": "^3.1.2",
     "vue-template-compiler": "2.5.17",
     "webpack": "^3.6.0",

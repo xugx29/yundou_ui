@@ -76,7 +76,6 @@ exports.cssLoaders = function (options) {
 exports.styleLoaders = function (options) {
   const output = []
   const loaders = exports.cssLoaders(options)
-
   for (const extension in loaders) {
     const loader = loaders[extension]
     output.push({
@@ -84,7 +83,6 @@ exports.styleLoaders = function (options) {
       use: loader
     })
   }
-
   return output
 }
 

@@ -6,16 +6,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractScss = new ExtractTextPlugin('/ydui.min.css')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const utils = require('./utils')
 module.exports = merge(baseWebpackConfig, {
   output: {
     filename: '[name].min.js'
   },
   module: {
-    loaders: [{
-      test: /\.scss$/i,
-      loader: extractScss.extract(['css-loader','sass-loader'])
-    }]
+    rules: utils.styleLoaders({
+      sourceMap: config.build.productionSourceMap,
+      extract: true,
+      usePostCSS: true
+    })
   },
   plugins: [
     new webpack.DefinePlugin({
