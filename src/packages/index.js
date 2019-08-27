@@ -5,6 +5,7 @@ import './styles/mixin.less';
 import './styles/normalize.less';
 import MessageBox from './components/MessageBox/index.js'
 import Message from './components/message/index'
+import Layout from './components/layout/index'
 const components = [
   MessageBox
 ];
@@ -22,10 +23,12 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   MessageBox,
-  Message
+  Message,
+  Layout
 }
 export {
   install,
   MessageBox,
-  Message
+  Message,
+  Layout
 }

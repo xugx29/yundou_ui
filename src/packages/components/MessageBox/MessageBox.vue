@@ -117,6 +117,7 @@
     }
     div.buttonArea{
       margin-top:35px;
+      text-align: center;
     }
     /*border-bottom-left-radius: 10px;*/
     /*border-bottom-right-radius: 10px;*/
