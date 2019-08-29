@@ -8,6 +8,13 @@
         {name: '新增凭证', url: '', parentName: '凭证中心'},
         {name: '凭证列表', url: '', parentName: '凭证中心'}
       ]
+    },{
+      name: '账簿',
+      url: '',
+      child: [
+        {name: '新增凭证1', url: '', parentName: '凭证中心1'},
+        {name: '凭证列表1', url: '', parentName: '凭证中心1'}
+      ]
     }]"
   ></Layout>
 </template>

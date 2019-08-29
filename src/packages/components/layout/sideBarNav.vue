@@ -7,7 +7,7 @@
           </a>
         </div>
         <ul class="navList">
-          <li class="topLevelLi active" v-for="(item, index) in nav" :key="index" @mouseenter="childNavData = item.child" @mouseleave="clearNavData">
+          <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="childNavData = item.child" @mouseleave="clearNavData">
             {{item.name}}
           </li>
         </ul>

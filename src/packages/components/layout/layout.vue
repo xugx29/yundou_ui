@@ -1,17 +1,27 @@
 <template>
   <div class="layoutContainer">
-    <sideBarNav :nav="nav"></sideBarNav>
-    <container :notice="notice"></container>
+    <template v-if="index">
+      <sideBarNav :nav="nav"></sideBarNav>
+      <container :notice="notice"></container>
+    </template>
+    <template v-if="!index">
+      <sideBarInPage :nav="nav"></sideBarInPage>
+      <containerInPage></containerInPage>
+    </template>
   </div>
 </template>
 
 <script>
   import sideBarNav from '../layout/sideBarNav'
+  import sideBarInPage from '../layout/sideBarInPage'
   import container from '../layout/container'
+  import containerInPage from '../layout/containerInPage'
   export default {
     name: 'Layout',
     data () {
-        return {}
+        return {
+            index: false
+        }
     },
     created () {
 
@@ -21,7 +31,9 @@
     },
     components: {
         sideBarNav,
-        container
+        sideBarInPage,
+        container,
+        containerInPage
     }
   }
 </script>
