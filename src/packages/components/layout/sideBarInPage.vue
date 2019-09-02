@@ -8,20 +8,35 @@
       </div>
       <ul class="navList">
         <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child)" @mouseleave="clearNavData">
-          {{item.name}}
+          <i :class="item.iconClass" class="navIcon"></i><span>{{item.name}}</span>
         </li>
       </ul>
     </div>
+<!--    -->
     <div v-if="childNavData" class="rightNav" @mouseenter="setNavData" @mouseleave="childNavData = null">
-      <div class="parentsName">{{childNavData[0].parentName}}</div>
+      <div class="parentsName">{{childNavData[0].alias}}</div>
       <ul>
-        <li v-for="(val, key) in childNavData" :key="key"><a href="">{{val.name}}</a></li>
+        <li v-for="(val, key) in childNavData" :key="key">
+          <span @click="toggleSecMenu"><i @click.stop></i>{{val.name}}</span>
+          <ul class="navItemList">
+            <li v-for="(v, k) in val.child" :key="k">
+              <a href="">{{v.name}}</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
     <div class="fixedRightNav">
       <div class="parentsName">{{selectMenuType}}</div>
       <ul>
-        <li v-for="(val, key) in childNavData" :key="key"><a href="">{{val.name}}</a></li>
+        <li v-for="(val, key) in childNavData" :key="key">
+          <span @click="toggleSecMenu"><i @click.stop></i>{{val.name}}</span>
+          <ul class="navItemList">
+            <li v-for="(v, k) in val.child" :key="k">
+              <a href="">{{v.name}}</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
@@ -40,8 +55,17 @@
         props: ['nav'],
         created () {
             console.log(this.nav)
+            this.childNavData = this.nav[0].child
         },
         methods: {
+            toggleSecMenu ($event) {
+                console.log()
+                if (Array.from($event.target.parentNode.classList).length == 0) {
+                    $event.target.parentNode.classList.add('hideMenu')
+                } else {
+                    $event.target.parentNode.classList.remove('hideMenu')
+                }
+            },
             showUserDropdown () {},
             setNavDataByHover (data) {
                 setTimeout(() => {
@@ -93,6 +117,35 @@
       line-height: 56px;
       font-weight: 500;
     }
+    ul.navItemList{
+      overflow: hidden;
+      max-height:300px;
+      transition: all .2s ease;
+      li{
+        position: relative;
+        width: 100%;
+        min-height: 30px;
+        line-height: 30px;
+        padding: 5px 0;
+        color: #323233;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+        background: #fff;
+        a{
+          position: relative;
+          display: block;
+          color: #323233;
+          border-radius: 2px;
+          font-size: 14px;
+          text-align: center;
+          &:hover{
+            color:@blueFontColor
+          }
+        }
+      }
+    }
     li{
       position: relative;
       width: 100%;
@@ -105,13 +158,57 @@
       text-align: center;
       box-sizing: border-box;
       background: #fff;
+      &.hideMenu {
+        i {
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          border: solid #878787;
+          border-width: 1px 1px 0 0;
+          transform: scale(1.25) rotate(45deg);
+          background: none;
+          margin-left: 12px;
+          margin-top:-2px;
+          margin-right: 12px;
+        }
+        .navItemList{
+          transition: all .2s ease;
+          max-height:1px;
+        }
+      }
+      span{
+        display: flex;
+        user-select: none;
+        align-content: center;
+        align-items: center;
+        width:100%;
+        height:30px;
+        line-height: 30px;
+        position: relative;
+        cursor: pointer;
+        padding-left: 4px;
+        i{
+          width: 4px;
+          height: 4px;
+          margin-top:-2px;
+          border: solid #878787;
+          border-width: 1px 1px 0 0;
+          margin-left: 12px;
+          margin-right: 12px;
+          -webkit-transform: scale(1.25) rotate(135deg);
+          -moz-transform: scale(1.25) rotate(135deg);
+          transform: scale(1.25) rotate(135deg);
+          transition: all .2s ease;
+        }
+      }
       a{
         position: relative;
         display: block;
         color: #323233;
         border-radius: 2px;
         font-size: 14px;
-        text-align: center;
+        text-align: left;
+        padding-left:38px;
         &:hover{
           color:@blueFontColor
         }
@@ -148,6 +245,36 @@
       line-height: 56px;
       font-weight: 500;
     }
+    ul.navItemList{
+      overflow: hidden;
+      max-height:300px;
+      transition: all .2s ease;
+      li{
+        position: relative;
+        width: 100%;
+        min-height: 30px;
+        line-height: 30px;
+        padding: 5px 0;
+        color: #323233;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+        background: #fff;
+        a{
+          position: relative;
+          display: block;
+          color: #323233;
+          border-radius: 2px;
+          font-size: 14px;
+          text-align: left;
+          padding-left:38px;
+          &:hover{
+            color:@blueFontColor
+          }
+        }
+      }
+    }
     li{
       position: relative;
       width: 100%;
@@ -160,6 +287,49 @@
       text-align: center;
       box-sizing: border-box;
       background: #fff;
+      &.hideMenu {
+        i {
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          border: solid #878787;
+          border-width: 1px 1px 0 0;
+          transform: scale(1.25) rotate(45deg);
+          background: none;
+          margin-left: 12px;
+          margin-top:-2px;
+          margin-right: 12px;
+        }
+        .navItemList{
+          transition: all .2s ease;
+          max-height:1px;
+        }
+      }
+      span{
+        display: flex;
+        user-select: none;
+        align-content: center;
+        align-items: center;
+        width:100%;
+        height:30px;
+        line-height: 30px;
+        position: relative;
+        cursor: pointer;
+        padding-left: 4px;
+        i{
+          width: 4px;
+          height: 4px;
+          margin-top:-2px;
+          border: solid #878787;
+          border-width: 1px 1px 0 0;
+          margin-left: 12px;
+          margin-right: 12px;
+          -webkit-transform: scale(1.25) rotate(135deg);
+          -moz-transform: scale(1.25) rotate(135deg);
+          transform: scale(1.25) rotate(135deg);
+          transition: all .2s ease;
+        }
+      }
       a{
         position: relative;
         display: block;
@@ -214,14 +384,24 @@
     }
     .navList{
       li.topLevelLi{
+        display: flex;
         width: 92px;
         font-size: 14px;
         height: 40px;
         line-height: 40px;
         cursor: pointer;
         color: #c8c9cc;
-        display: block;
+        align-content: center;
+        align-items: center;
         padding-left: 18px;
+        i.navIcon{
+          display: inline-block;
+          width:18px;
+          height:18px;
+          margin-right: 3px;
+          background-size: cover;
+          background-color:#f00;
+        }
         &.active{
           background: #fff;
           color:#333;

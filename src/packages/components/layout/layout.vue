@@ -20,7 +20,7 @@
     name: 'Layout',
     data () {
         return {
-            index: false
+            index: true
         }
     },
     created () {

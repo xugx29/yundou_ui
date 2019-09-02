@@ -3,13 +3,19 @@
     :notice="{show: true, text1: '111', text2: '222'}"
     :nav="[{
       name: '凭证',
+      iconClass: '',
       url: '',
       child: [
-        {name: '新增凭证', url: '', parentName: '凭证中心'},
-        {name: '凭证列表', url: '', parentName: '凭证中心'}
+        {name: '智能凭证', alias: '凭证管理', child: [
+          {name: '1'}, {name: '2'}
+        ]},
+        {name: '手工凭证', alias: '凭证管理', child: [
+          {name: '3'}, {name: '4'}
+        ]},
       ]
     },{
       name: '账簿',
+      iconClass: '',
       url: '',
       child: [
         {name: '新增凭证1', url: '', parentName: '凭证中心1'},
