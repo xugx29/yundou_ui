@@ -3,6 +3,7 @@
     :notice="{show: true, text1: '111', text2: '222'}"
     :nav="menu"
     :serviceModule="true"
+    :logo="''"
   ></Layout>
 </template>
 
