@@ -36,7 +36,7 @@
     data () {
         return {
             childNavData: null,
-            cacheNavData: null,
+            cacheNavData: null
         }
     },
     props: ['nav', 'logo'],

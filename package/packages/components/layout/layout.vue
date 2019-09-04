@@ -1,27 +1,53 @@
 <template>
   <div class="layoutContainer">
-    <sideBarNav :nav="nav"></sideBarNav>
-    <container :notice="notice"></container>
+    <template v-if="index">
+      <sideBarNav :nav="nav" :logo="logo"></sideBarNav>
+      <container :notice="notice"></container>
+    </template>
+    <template v-if="!index">
+      <sideBarInPage :nav="nav" :logo="logo"></sideBarInPage>
+      <containerInPage :nav="nav" :serviceModule="serviceModule"></containerInPage>
+    </template>
   </div>
 </template>
 
 <script>
   import sideBarNav from '../layout/sideBarNav'
+  import sideBarInPage from '../layout/sideBarInPage'
   import container from '../layout/container'
+  import containerInPage from '../layout/containerInPage'
   export default {
     name: 'Layout',
     data () {
-        return {}
+        return {
+            index: true
+        }
+    },
+    watch: {
+        $route (to, from) {
+            if (to.path != '/index') {
+                this.index = false
+            } else {
+                this.index = true
+            }
+            console.log(this.index)
+        }
     },
     created () {
-
+        if (this.$route.path != '/index') {
+            this.index = false
+        } else {
+            this.index = true
+        }
     },
-    props: ['notice', 'nav'],
+    props: ['notice', 'nav', 'serviceModule', 'logo'],
     methods: {
     },
     components: {
         sideBarNav,
-        container
+        sideBarInPage,
+        container,
+        containerInPage
     }
   }
 </script>
