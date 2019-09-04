@@ -1,0 +1,96 @@
+[
+  {
+    "name": "概况",
+    "iconClass": "icon-survey",
+    "url": "/index",
+    "child": {}
+  },
+  {
+    "name": "凭证",
+    "iconClass": "icon-voucher",
+    "url": "",
+    "child": {
+        "alias": "凭证管理",
+        "data": [{"name": "智能凭证", "child": [
+          {"name": "数据中心", "url": "/dataCenter"}
+        ]},
+        {"name": "手工凭证", "child": [
+          {"name": "新增凭证", "url": "/addVoucher"}, {"name": "凭证审核", "url": "/voucherAudit"}
+        ]},
+        {"name": "查凭证", "child": [
+          {"name": "凭证列表", "url": "/voucherList"}, {"name": "序时账", "url": "/chronological"}, {"name": "凭证汇总表", "url": "/voucherSummary"}, {"name": "凭证票据关联", "url": "voucherRelationBill"}
+        ]},
+        {"name": "结账", "child": [
+          {"name": "结账", "url": "/settleAccount"}, {"name": "反结账", "url": "/antiSettlement"}
+        ]}]}
+  },
+  {
+    "name": "账簿",
+    "iconClass": "",
+    "url": "",
+    "child": {
+      "alias": "账簿管理",
+      "data": [{"name": "科目账簿", "child": [
+        {"name": "科目余额表", "url": "/subjectBalance"}, {"name": "明细账", "url": "/subsidiaryLedger"}, {"name": "总账", "url":"/generalLedger"}, {"name": "多栏账", "url":"/multiColumnAccount"}
+      ]},
+      {"name": "辅助核算账簿", "child": [
+        {"name": "余额表"}, {"name": "明细账"}
+      ]}]
+    }
+  },
+  {
+    "name": "报表",
+    "iconClass": "",
+    "url": "",
+    "child": {
+      "alias": "报表管理",
+      "data": [{"name": "财务报表", "child": [
+        {"name": "资产负债表"}, {"name": "利润表"}, {"name": "现金流量表"}, {"name": "权限变动表"}
+      ]},
+      {"name": "经营报表", "child": [
+        {"name": "往来统计表"}, {"name": "费用统计表"}, {"name": "收支统计表"}, {"name": "工商年报表"}
+      ]},
+      {"name": "税务报表", "child": [
+        {"name": "增值税报表"}
+      ]}]
+    }
+  },
+  {
+    "name": "辅助",
+    "iconClass": "",
+    "url": "",
+    "child": {"alias": "辅助","data":[
+      {"name": "薪酬管理", "child": [
+        {"name": "薪酬"}, {"name": "社保公积金"}, {"name": "员工档案"}, {"name": "专项附加扣除"}, {"name": "薪酬计算器"}, {"name": "社保计算器"}
+      ]},
+      {"name": "资产管理", "child": [
+        {"name": "固定资产"}, {"name": "无形资产"}, {"name": "待摊费用"}, {"name": "折旧明细表"}, {"name": "清理记录表"}
+      ]},
+      {"name": "库存管理", "child": [
+        {"name": "库存核算"}, {"name": "品类管理"}, {"name": "毛利率统计表"}, {"name": "数量核算明细账"}, {"name": "数量核算余额表"}, {"name": "暂估冲销统计表"}, {"name": "生产成本分配表"}
+      ]}
+    ]}
+  },
+  {
+    "name": "打印",
+    "iconClass": "",
+    "url": "/print",
+    "child": {}
+  },
+  {
+    "name": "设置",
+    "iconClass": "",
+    "url": "",
+    "child": {
+      "alias": "设置中心",
+      "data":[{"name": "科目期初", "child": []},
+      {"name": "辅助核算", "child": []},
+      {"name": "薪酬设置", "child": []},
+      {"name": "票据设置", "child": []},
+      {"name": "智能做账设置", "child": []},
+      {"name": "税项设置", "child": []},
+      {"name": "固定资产设置", "child": []},
+      {"name": "库存设置", "child": []}]
+    }
+  }
+]

@@ -3,23 +3,25 @@
       <div class="leftNav">
         <div class="avatar">
           <a href="">
-            <img src="https://img.yzcdn.cn/public_files/2016/05/13/8f9c442de8666f82abaf7dd71574e997.png!60x60.jpg" alt="">
+            <img :src="logo" alt="">
           </a>
         </div>
         <ul class="navList">
-          <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child)" @mouseleave="clearNavData">
-            <i :class="item.iconClass" class="navIcon"></i><span>{{item.name}}</span>
+          <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
+            <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url}">{{item.name}}</router-link></span>
+            <span v-else>{{item.name}}</span>
           </li>
         </ul>
       </div>
       <div v-if="childNavData" class="rightNav" @mouseenter="setNavData" @mouseleave="childNavData = null">
-        <div class="parentsName">{{childNavData[0].alias}}</div>
+        <div class="parentsName">{{childNavData && childNavData.child && childNavData.child.length != 0 ? childNavData.alias : menuText}}</div>
         <ul>
           <li v-for="(val, key) in childNavData" :key="key">
-            <span @click="toggleSecMenu"><i @click.stop></i>{{val.name}}</span>
-            <ul class="navItemList">
+            <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
+            <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
+            <ul class="navItemList" v-if="val.child.length != 0">
               <li v-for="(v, k) in val.child" :key="k">
-                <a href="">{{v.name}}</a>
+                <router-link :to="{path: v.url, query: {}}">{{v.name}}</router-link>
               </li>
             </ul>
           </li>
@@ -34,10 +36,10 @@
     data () {
         return {
             childNavData: null,
-            cacheNavData: null
+            cacheNavData: null,
         }
     },
-    props: ['nav'],
+    props: ['nav', 'logo'],
     created () {
       console.log(this.nav)
     },
@@ -51,19 +53,25 @@
         },
         showUserDropdown () {},
         setNavDataByHover (data) {
+            console.log(data);
+            if (Object.keys(data).length == 0) return;
             setTimeout(() => {
-                this.childNavData = data
+                this.menuText = data.alias;
+                this.childNavData = data.data
                 console.log(this.childNavData)
             }, 3)
         },
         setNavData () {
             setTimeout(() => {
+                this.menuText = this.menuTextCache;
                 this.childNavData = this.cacheNavData;
             }, 2)
         },
         clearNavData () {
+            this.menuTextCache = this.menuText;
             this.cacheNavData = this.childNavData;
             setTimeout(() => {
+                this.menuText = '';
                 this.childNavData = null;
             }, 1)
         }
@@ -254,6 +262,14 @@
       cursor: pointer;
       color: #c8c9cc;
       padding-left: 18px;
+      a{
+        position: relative;
+        display: block;
+        color: #c8c9cc;
+        border-radius: 2px;
+        font-size: 14px;
+        text-align: center;
+      }
       i.navIcon{
         display: inline-block;
         width:18px;

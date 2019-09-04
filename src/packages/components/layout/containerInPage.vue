@@ -1,8 +1,8 @@
 <template>
   <div class="appContainer">
       <header class="subtitle">
-        <span class="subtitleText">凭证</span>
-        <div class="helpCenter" v-if="!showHelpCenter" @click="showHelpCenter = !showHelpCenter">
+        <span class="subtitleText">{{pageName}}</span>
+        <div class="helpCenter" v-if="!showHelpCenter && serviceModule" @click="showHelpCenter = !showHelpCenter">
           <span class="helpIcon"></span>
           <span>帮助和服务</span>
           <span class="toggleHelpCenter"></span>
@@ -10,9 +10,9 @@
       </header>
       <div class="viewContainer">
         <div class="viewMain">
-<!--          <router-view/>-->
+          <router-view/>
         </div>
-        <div class="helpCenterContainer" v-if="showHelpCenter">
+        <div class="helpCenterContainer" v-if="showHelpCenter && serviceModule">
           <div class="serviceAndHelpTitle helpCenter" @click="showHelpCenter = !showHelpCenter">
             <div>
               <span class="helpIcon"></span>
@@ -28,16 +28,57 @@
 </template>
 <script>
     export default {
+        props: ['nav', 'serviceModule'],
         data () {
             return {
+                pageName: '',
                 showHelpCenter: false
             }
         },
+        watch: {
+            $route (to, from) {
+                this.getPageName();
+            }
+        },
         created () {
+            this.getPageName();
             if (document.body.clientWidth <= 1400) {
                 this.showHelpCenter = false;
             } else {
                 this.showHelpCenter = true;
+            }
+        },
+        methods: {
+            getPageName () {
+                let path = this.$route.path;
+                let nav = this.nav;
+                let topLevelHasUrl = false;
+                for (let i = 0; i < nav.length; i++) {
+                    if (nav[i].url == path) {
+                        topLevelHasUrl = true;
+                        return false;
+                    }
+                }
+                this.pageName = '';
+                if (!topLevelHasUrl) {
+                    for (let i = 0; i < nav.length; i++) {
+                        if (Object.keys(nav[i].child).length != 0) {
+                            this.loopUrlLevel2(nav[i].child.data, nav[i].child.data)
+                        }
+                        // this.loopUrl()
+                    }
+                }
+            },
+            loopUrlLevel2 (l1, l2, l3) {
+                let path = this.$route.path;
+                for (let i = 0; i < l2.length; i++) {
+                    for (let j = 0; j < l2[i].child.length; j++) {
+                        if (l2[i].child[j].url == path) {
+                            console.log(l2[i].child[j].name)
+                            this.pageName = l2[i].child[j].name
+                        }
+                    }
+                }
             }
         }
     }
@@ -159,6 +200,8 @@
           width:223px;
           background: #fff;
           position: relative;
+          padding: 14px 16px 60px;
+          height: 100%;
           .helpCenter{
             width:100%;
             height:55px;

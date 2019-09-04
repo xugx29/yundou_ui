@@ -3,37 +3,39 @@
     <div class="leftNav">
       <div class="avatar">
         <a href="">
-          <img src="https://img.yzcdn.cn/public_files/2016/05/13/8f9c442de8666f82abaf7dd71574e997.png!60x60.jpg" alt="">
+          <img :src="logo" alt="">
         </a>
       </div>
       <ul class="navList">
-        <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child)" @mouseleave="clearNavData">
-          <i :class="item.iconClass" class="navIcon"></i><span>{{item.name}}</span>
+        <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
+          <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url}">{{item.name}}</router-link></span>
+          <span v-else>{{item.name}}</span>
         </li>
       </ul>
     </div>
-<!--    -->
     <div v-if="childNavData" class="rightNav" @mouseenter="setNavData" @mouseleave="childNavData = null">
-      <div class="parentsName">{{childNavData[0].alias}}</div>
+      <div class="parentsName">{{childNavData && childNavData.child && childNavData.child.length != 0 ? childNavData.alias : menuText}}</div>
       <ul>
         <li v-for="(val, key) in childNavData" :key="key">
-          <span @click="toggleSecMenu"><i @click.stop></i>{{val.name}}</span>
-          <ul class="navItemList">
+          <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
+          <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
+          <ul class="navItemList" v-if="val.child.length != 0">
             <li v-for="(v, k) in val.child" :key="k">
-              <a href="">{{v.name}}</a>
+              <router-link :class="{active: v.url == $route.path}" :to="{path: v.url, query: {}}">{{v.name}}</router-link>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="fixedRightNav">
-      <div class="parentsName">{{selectMenuType}}</div>
+    <div v-if="currentNavData" class="fixedRightNav">
+      <div class="parentsName">{{currentNavData.alias}}</div>
       <ul>
-        <li v-for="(val, key) in childNavData" :key="key">
-          <span @click="toggleSecMenu"><i @click.stop></i>{{val.name}}</span>
-          <ul class="navItemList">
+        <li v-for="(val, key) in currentNavData.data" :key="key">
+          <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
+          <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
+          <ul class="navItemList" v-if="val.child.length != 0">
             <li v-for="(v, k) in val.child" :key="k">
-              <a href="">{{v.name}}</a>
+              <router-link :class="{active: v.url == $route.path}" :to="{path: v.url, query: {}}">{{v.name}}</router-link>
             </li>
           </ul>
         </li>
@@ -47,19 +49,55 @@
         name: 'slideBarNav',
         data () {
             return {
-                selectMenuType: '报表',
+                menuText: '',
+                selectMenuType: '',
                 childNavData: null,
-                cacheNavData: null
+                cacheNavData: null,
+                currentNavData: null
             }
         },
-        props: ['nav'],
+        props: ['nav', 'logo'],
+        watch: {
+            $route (to, from) {
+                this.getNavDataByPath();
+            }
+        },
         created () {
-            console.log(this.nav)
-            this.childNavData = this.nav[0].child
+            this.getNavDataByPath();
         },
         methods: {
+            getNavDataByPath () {
+                let path = this.$route.path;
+                let nav = this.nav;
+                let topLevelHasUrl = false;
+                for (let i = 0; i < nav.length; i++) {
+                  if (nav[i].url == path) {
+                      topLevelHasUrl = true;
+                      return false;
+                  }
+                }
+                this.currentNavData = null;
+                if (!topLevelHasUrl) {
+                    for (let i = 0; i < nav.length; i++) {
+                        if (Object.keys(nav[i].child).length != 0) {
+                            this.loopUrlLevel2(nav[i].child.data, nav[i].child.data, nav[i].child)
+                        }
+                        // this.loopUrl()
+                    }
+                }
+            },
+            loopUrlLevel2 (l1, l2, l3) {
+              let path = this.$route.path;
+              for (let i = 0; i < l2.length; i++) {
+                  for (let j = 0; j < l2[i].child.length; j++) {
+                      if (l2[i].child[j].url == path) {
+                          console.log(l3)
+                          this.currentNavData = l3
+                      }
+                  }
+              }
+            },
             toggleSecMenu ($event) {
-                console.log()
                 if (Array.from($event.target.parentNode.classList).length == 0) {
                     $event.target.parentNode.classList.add('hideMenu')
                 } else {
@@ -67,19 +105,25 @@
                 }
             },
             showUserDropdown () {},
-            setNavDataByHover (data) {
+            setNavDataByHover (data, name) {
+                if (Object.keys(data).length == 0) return;
                 setTimeout(() => {
-                    this.childNavData = data
+                    this.menuText = data.alias;
+                    this.childNavData = data.data
+                    console.log(this.childNavData)
                 }, 3)
             },
             setNavData () {
                 setTimeout(() => {
+                    this.menuText = this.menuTextCache;
                     this.childNavData = this.cacheNavData;
                 }, 2)
             },
             clearNavData () {
+                this.menuTextCache = this.menuText;
                 this.cacheNavData = this.childNavData;
                 setTimeout(() => {
+                    this.menuText = '';
                     this.childNavData = null;
                 }, 1)
             }
@@ -139,7 +183,6 @@
           color: #323233;
           border-radius: 2px;
           font-size: 14px;
-          text-align: center;
           &:hover{
             color:@blueFontColor
           }
@@ -209,6 +252,10 @@
         font-size: 14px;
         text-align: left;
         padding-left:38px;
+        &.active{
+          color:#323233;
+          background-color: #ebedf0;
+        }
         &:hover{
           color:@blueFontColor
         }
@@ -269,6 +316,10 @@
           font-size: 14px;
           text-align: left;
           padding-left:38px;
+          &.active{
+            color:#323233;
+            background-color: #ebedf0;
+          }
           &:hover{
             color:@blueFontColor
           }
@@ -394,13 +445,20 @@
         align-content: center;
         align-items: center;
         padding-left: 18px;
+        a{
+          position: relative;
+          display: block;
+          color: #c8c9cc;
+          border-radius: 2px;
+          font-size: 14px;
+          text-align: center;
+        }
         i.navIcon{
           display: inline-block;
           width:18px;
           height:18px;
           margin-right: 3px;
           background-size: cover;
-          background-color:#f00;
         }
         &.active{
           background: #fff;

@@ -1,12 +1,12 @@
 <template>
   <div class="layoutContainer">
     <template v-if="index">
-      <sideBarNav :nav="nav"></sideBarNav>
+      <sideBarNav :nav="nav" :logo="logo"></sideBarNav>
       <container :notice="notice"></container>
     </template>
     <template v-if="!index">
-      <sideBarInPage :nav="nav"></sideBarInPage>
-      <containerInPage></containerInPage>
+      <sideBarInPage :nav="nav" :logo="logo"></sideBarInPage>
+      <containerInPage :nav="nav" :serviceModule="serviceModule"></containerInPage>
     </template>
   </div>
 </template>
@@ -23,10 +23,24 @@
             index: true
         }
     },
-    created () {
-
+    watch: {
+        $route (to, from) {
+            if (to.path != '/index') {
+                this.index = false
+            } else {
+                this.index = true
+            }
+            console.log(this.index)
+        }
     },
-    props: ['notice', 'nav'],
+    created () {
+        if (this.$route.path != '/index') {
+            this.index = false
+        } else {
+            this.index = true
+        }
+    },
+    props: ['notice', 'nav', 'serviceModule', 'logo'],
     methods: {
     },
     components: {
