@@ -26,7 +26,7 @@
   },
   {
     "name": "账簿",
-    "iconClass": "",
+    "iconClass": "icon-books",
     "url": "",
     "child": {
       "alias": "账簿管理",
@@ -40,7 +40,7 @@
   },
   {
     "name": "报表",
-    "iconClass": "",
+    "iconClass": "icon-reports",
     "url": "",
     "child": {
       "alias": "报表管理",
@@ -57,7 +57,7 @@
   },
   {
     "name": "辅助",
-    "iconClass": "",
+    "iconClass": "icon-support",
     "url": "",
     "child": {"alias": "辅助","data":[
       {"name": "薪酬管理", "child": [
@@ -73,13 +73,13 @@
   },
   {
     "name": "打印",
-    "iconClass": "",
+    "iconClass": "icon-print",
     "url": "/print",
     "child": {}
   },
   {
     "name": "设置",
-    "iconClass": "",
+    "iconClass": "icon-setting",
     "url": "",
     "child": {
       "alias": "设置中心",

@@ -8,7 +8,7 @@
         </div>
         <ul class="navList">
           <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
-            <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url}">{{item.name}}</router-link></span>
+            <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url, query: {t: 1}}">{{item.name}}</router-link></span>
             <span v-else>{{item.name}}</span>
           </li>
         </ul>
@@ -243,6 +243,7 @@
         margin: 12px auto 0;
         width: 32px;
         height: 32px;
+        display: inline-block;
         background-size: cover;
         background-position: 50% 50%;
         background-color: #fff;

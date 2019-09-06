@@ -1,10 +1,49 @@
-#### 文字颜色(Font Color)
-> 文字颜色因项目需求而异，仅提供基础的几种文字颜色，已添加到全局的预编译变量中，预编译使用Sass，具体颜色变量请看下表:
+#### 布局(Layout)
+> UI库提供两列布局，菜单支持三级，具体使用如下
 
-##### 参数
-| Sass变量 | 示例 | 色值 | 适用范围 |
+##### Props
+| props名 | 默认 | 类型 | 注释 |
 | :------: | :------: | :------: | :------: |
-| $baseFontColor | <font>基础文字颜色示例</font> | #595959 | 全局文字颜色 |
-| $redFontColor | <font color=#df4545>红色文字示例</font> | #df4545 | 特殊标记、错误提示等 |
-| $grayFontColor | <font color=#999>灰色文字示例</font> | #999999 | 禁用、一般性提醒等 |
-| $blueFontColor | <font color=#5f84cd>蓝色文字示例</font> | #5f84cd | 超链接等 |
+| nav | 无默认值，需按示例①构建 | Array | 导航菜单 |
+| serviceModule | false | Boolean | 是否显示右侧服务中心模块 |
+| logo | 图片url | String | 菜单中logo的url地址 |
+| notice | {show: true, text1: '111', text2: '222'} | Object | 消息通知模块 |
+
+##### 示例①
+> 此例用于提供构建nav菜单的数据结构，具体如下
+```javascript
+    [
+      {
+        "name": "一级菜单1",
+        "iconClass": "",
+        "url": "",
+        "child": {}
+      },
+      {
+        "name": "一级菜单2",
+        "iconClass": "",
+        "url": "",
+        "child": {
+            "alias": "一级菜单2的别名",
+            "data": [{"name": "二级菜单1", "child": [
+              {"name": "三级菜单1", "url": ""}
+            ]},
+            {"name": "二级菜单2", "child": [
+              {"name": "三级菜单2", "url": ""}, {"name": "三级菜单3", "url": ""}
+            ]},
+            {"name": "二级菜单3", "child": [
+              {"name": "三级菜单4", "url": ""}, {"name": "三级菜单5", "url": ""}
+            ]},
+            {"name": "二级菜单4", "child": [
+              {"name": "三级菜单6", "url": ""}, {"name": "三级菜单7", "url": ""}
+            ]}]}
+      }
+    ]
+```
+##### 字段说明
+| 字段名 | 注释 |
+| :------: | :------: |
+| name | 菜单名称 |
+| iconClass | 一级菜单前面图标的图标名，和项目中雪碧图对应即可 |
+| url | router link url，提供给vue-router做跳转链接，如不需跳转（部分一级菜单等），留空即可 |
+| child | 下级菜单数组 |

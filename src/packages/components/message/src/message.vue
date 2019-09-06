@@ -96,7 +96,7 @@
 .messageBox{
   z-index:10001;
   position: fixed;
-  top:1000px;
+  top:100px;
   left:50%;
   margin-left:-170px;
   box-sizing: border-box;
