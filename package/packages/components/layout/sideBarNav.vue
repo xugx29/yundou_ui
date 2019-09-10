@@ -1,10 +1,13 @@
 <template>
   <div class="slideBarNav">
       <div class="leftNav">
-        <div class="avatar">
+        <div class="avatar" style="position: relative">
           <a href="">
             <img :src="logo" alt="">
           </a>
+          <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+              <slot v-if="showDropdown" name="operation"></slot>
+          </div>
         </div>
         <ul class="navList">
           <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
@@ -35,6 +38,8 @@
     name: 'slideBarNav',
     data () {
         return {
+            showDropdown: false,
+            showDropdownCache: false,
             childNavData: null,
             cacheNavData: null
         }
@@ -44,6 +49,23 @@
       console.log(this.nav)
     },
     methods: {
+        setOp () {
+            console.log(this.showDropdownCache, 'this.showDropdownCache')
+            setTimeout(() => {
+                this.showDropdown = this.showDropdownCache;
+            }, 10)
+        },
+        setOperationShow () {
+            setTimeout(() => {
+                this.showDropdown = true
+            }, 15)
+        },
+        cancelOperationShow () {
+            this.showDropdownCache = this.showDropdown
+            setTimeout(() => {
+                this.showDropdown = false
+            }, 5)
+        },
         toggleSecMenu ($event) {
             if (Array.from($event.target.parentNode.classList).length == 0) {
                 $event.target.parentNode.classList.add('hideMenu')
@@ -53,7 +75,6 @@
         },
         showUserDropdown () {},
         setNavDataByHover (data) {
-            console.log(data);
             if (Object.keys(data).length == 0) return;
             setTimeout(() => {
                 this.menuText = data.alias;
@@ -273,10 +294,7 @@
       }
       i.navIcon{
         display: inline-block;
-        width:18px;
-        height:18px;
-        margin-right: 3px;
-        background-size: cover;
+        margin-right: 5px;
       }
       &.active{
         background: #fff;

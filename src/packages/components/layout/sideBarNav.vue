@@ -49,23 +49,6 @@
       console.log(this.nav)
     },
     methods: {
-        setOp () {
-            console.log(this.showDropdownCache, 'this.showDropdownCache')
-            setTimeout(() => {
-                this.showDropdown = this.showDropdownCache;
-            }, 10)
-        },
-        setOperationShow () {
-            setTimeout(() => {
-                this.showDropdown = true
-            }, 15)
-        },
-        cancelOperationShow () {
-            this.showDropdownCache = this.showDropdown
-            setTimeout(() => {
-                this.showDropdown = false
-            }, 5)
-        },
         toggleSecMenu ($event) {
             if (Array.from($event.target.parentNode.classList).length == 0) {
                 $event.target.parentNode.classList.add('hideMenu')

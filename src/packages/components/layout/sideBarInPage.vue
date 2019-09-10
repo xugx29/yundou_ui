@@ -5,8 +5,10 @@
         <a href="">
           <img :src="logo" alt="">
         </a>
+        <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+          <slot v-if="showDropdown" name="operation"></slot>
+        </div>
       </div>
-      <slot name="operation"></slot>
       <ul class="navList">
         <li class="topLevelLi" :class="{active: currentTopLevelName == item.name}" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
           <i class="navIcon" :class="currentTopLevelName == item.name ? item.iconClass + '-hover' : item.iconClass"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url, query: {t: 1}}">{{item.name}}</router-link></span>

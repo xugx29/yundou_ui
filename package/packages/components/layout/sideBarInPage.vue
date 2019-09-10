@@ -6,6 +6,7 @@
           <img :src="logo" alt="">
         </a>
       </div>
+      <slot name="operation"></slot>
       <ul class="navList">
         <li class="topLevelLi" :class="{active: currentTopLevelName == item.name}" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
           <i class="navIcon" :class="currentTopLevelName == item.name ? item.iconClass + '-hover' : item.iconClass"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url, query: {t: 1}}">{{item.name}}</router-link></span>
@@ -461,10 +462,7 @@
         }
         i.navIcon{
           display: inline-block;
-          width:18px;
-          height:18px;
-          margin-right: 3px;
-          background-size: cover;
+          margin-right: 5px;
         }
         &.active{
           background: #fff;
