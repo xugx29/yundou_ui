@@ -462,10 +462,7 @@
         }
         i.navIcon{
           display: inline-block;
-          width:18px;
-          height:18px;
-          margin-right: 3px;
-          background-size: cover;
+          margin-right: 5px;
         }
         &.active{
           background: #fff;
