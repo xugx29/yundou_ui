@@ -5,7 +5,7 @@
     :serviceModule="true"
     logo="https://www.baidu.com"
   >
-
+  <div style="background: #f00;width:100px;height:100px;" slot="avatarDropDown">abc</div>
   </Layout>
 </template>
 

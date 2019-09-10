@@ -1,11 +1,19 @@
 <template>
   <div class="layoutContainer">
     <template v-if="index">
-      <sideBarNav :nav="nav" :logo="logo"></sideBarNav>
+      <sideBarNav :nav="nav" :logo="logo">
+        <div class="a999" slot="operation">
+          <slot name="avatarDropDown"></slot>
+        </div>
+      </sideBarNav>
       <container :notice="notice"></container>
     </template>
     <template v-if="!index">
-      <sideBarInPage :nav="nav" :logo="logo"></sideBarInPage>
+      <sideBarInPage :nav="nav" :logo="logo">
+        <template slot="operation">
+          <slot name="avatarDropDown"></slot>
+        </template>
+      </sideBarInPage>
       <containerInPage :nav="nav" :serviceModule="serviceModule"></containerInPage>
     </template>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="appContainer">
+  <div class="appContainer" :class="{ml92: tpl}">
       <header class="subtitle">
         <span class="subtitleText">{{pageName}}</span>
         <div class="helpCenter" v-if="!showHelpCenter && serviceModule" @click="showHelpCenter = !showHelpCenter">
@@ -32,15 +32,26 @@
         data () {
             return {
                 pageName: '',
-                showHelpCenter: false
+                showHelpCenter: false,
+                tpl: false
             }
         },
         watch: {
             $route (to, from) {
+                if (to.query.t && to.query.t == 1) {
+                    this.tpl = true;
+                } else {
+                    this.tpl = false;
+                }
                 this.getPageName();
             }
         },
         created () {
+            if (this.$route.query.t && this.$route.query.t == 1) {
+                this.tpl = true;
+            } else {
+                this.tpl = false;
+            }
             this.getPageName();
             if (document.body.clientWidth <= 1400) {
                 this.showHelpCenter = false;
@@ -52,14 +63,15 @@
             getPageName () {
                 let path = this.$route.path;
                 let nav = this.nav;
+                let name = '';
                 let topLevelHasUrl = false;
                 for (let i = 0; i < nav.length; i++) {
                     if (nav[i].url == path) {
+                        name = nav[i].name;
                         topLevelHasUrl = true;
-                        return false;
+                        break;
                     }
                 }
-                this.pageName = '';
                 if (!topLevelHasUrl) {
                     for (let i = 0; i < nav.length; i++) {
                         if (Object.keys(nav[i].child).length != 0) {
@@ -67,6 +79,8 @@
                         }
                         // this.loopUrl()
                     }
+                } else {
+                    this.pageName = name;
                 }
             },
             loopUrlLevel2 (l1, l2, l3) {
@@ -84,6 +98,9 @@
     }
 </script>
 <style scoped lang="less">
+  .ml92{
+    margin-left:92px !important;
+  }
   .appContainer{
     height:calc(~"100vh - 56px");
     position: relative;

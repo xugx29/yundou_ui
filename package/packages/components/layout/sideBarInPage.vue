@@ -7,8 +7,8 @@
         </a>
       </div>
       <ul class="navList">
-        <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
-          <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url}">{{item.name}}</router-link></span>
+        <li class="topLevelLi" :class="{active: currentTopLevelName == item.name}" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
+          <i class="navIcon" :class="currentTopLevelName == item.name ? item.iconClass + '-hover' : item.iconClass"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url, query: {t: 1}}">{{item.name}}</router-link></span>
           <span v-else>{{item.name}}</span>
         </li>
       </ul>
@@ -53,7 +53,8 @@
                 selectMenuType: '',
                 childNavData: null,
                 cacheNavData: null,
-                currentNavData: null
+                currentNavData: null,
+                currentTopLevelName: ''
             }
         },
         props: ['nav', 'logo'],
@@ -70,29 +71,34 @@
                 let path = this.$route.path;
                 let nav = this.nav;
                 let topLevelHasUrl = false;
+                let name = '';
                 for (let i = 0; i < nav.length; i++) {
                   if (nav[i].url == path) {
+                      name = nav[i].name;
                       topLevelHasUrl = true;
-                      return false;
+                      break
                   }
                 }
-                this.currentNavData = null;
                 if (!topLevelHasUrl) {
                     for (let i = 0; i < nav.length; i++) {
                         if (Object.keys(nav[i].child).length != 0) {
-                            this.loopUrlLevel2(nav[i].child.data, nav[i].child.data, nav[i].child)
+                            this.loopUrlLevel2(nav[i].child.data, nav[i].child.data, nav[i].child, nav[i])
                         }
                         // this.loopUrl()
                     }
+                } else {
+                    this.currentTopLevelName = name
+                    this.currentNavData = null;
                 }
             },
-            loopUrlLevel2 (l1, l2, l3) {
+            loopUrlLevel2 (l1, l2, l3, l4) {
               let path = this.$route.path;
               for (let i = 0; i < l2.length; i++) {
                   for (let j = 0; j < l2[i].child.length; j++) {
                       if (l2[i].child[j].url == path) {
                           console.log(l3)
                           this.currentNavData = l3
+                          this.currentTopLevelName = l4.name;
                       }
                   }
               }
@@ -274,7 +280,7 @@
     border-right: 1px solid #ebedf0;
     z-index: 4;
     position: absolute;
-    overflow: hidden;
+    /*overflow: hidden;*/
     display: flex;
     left:92px;
     top:0;
@@ -407,7 +413,6 @@
     display: -moz-box;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     z-index: 2;
     .avatar{
       height: 56px;
@@ -426,6 +431,7 @@
           margin: 12px auto 0;
           width: 32px;
           height: 32px;
+          display: inline-block;
           background-size: cover;
           background-position: 50% 50%;
           background-color: #fff;
@@ -463,6 +469,9 @@
         &.active{
           background: #fff;
           color:#333;
+          a{
+            color:#333;
+          }
         }
         &:hover{
           background: #666;
