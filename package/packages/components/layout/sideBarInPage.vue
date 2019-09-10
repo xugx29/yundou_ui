@@ -57,7 +57,8 @@
                 childNavData: null,
                 cacheNavData: null,
                 currentNavData: null,
-                currentTopLevelName: ''
+                currentTopLevelName: '',
+                showDropdown: false
             }
         },
         props: ['nav', 'logo'],
