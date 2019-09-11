@@ -5,8 +5,8 @@
           <a href="">
             <img :src="logo" alt="">
           </a>
-          <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-              <slot v-if="showDropdown" name="operation"></slot>
+          <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown1 = true" @mouseleave="showDropdown1 = false">
+              <slot v-if="showDropdown1" name="operation"></slot>
           </div>
         </div>
         <ul class="navList">
@@ -38,9 +38,8 @@
     name: 'slideBarNav',
     data () {
         return {
-            showDropdownCache: false,
             childNavData: null,
-            showDropdown: false,
+            showDropdown1: false,
             cacheNavData: null
         }
     },

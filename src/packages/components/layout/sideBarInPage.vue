@@ -5,8 +5,8 @@
         <a href="">
           <img :src="logo" alt="">
         </a>
-        <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-          <slot v-if="showDropdown" name="operation"></slot>
+        <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown2 = true" @mouseleave="showDropdown2 = false">
+          <slot v-if="showDropdown2" name="operation"></slot>
         </div>
       </div>
       <ul class="navList">
@@ -58,7 +58,7 @@
                 cacheNavData: null,
                 currentNavData: null,
                 currentTopLevelName: '',
-                showDropdown: false
+                showDropdown2: false
             }
         },
         props: ['nav', 'logo'],
