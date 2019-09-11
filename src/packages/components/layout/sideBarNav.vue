@@ -38,7 +38,6 @@
     name: 'slideBarNav',
     data () {
         return {
-            showDropdownCache: false,
             childNavData: null,
             showDropdown: false,
             cacheNavData: null

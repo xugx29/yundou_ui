@@ -49,7 +49,7 @@
 
 <script>
     export default {
-        name: 'slideBarNav',
+        name: 'slideBarNavPage',
         data () {
             return {
                 menuText: '',
