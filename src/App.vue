@@ -5,7 +5,11 @@
     :serviceModule="true"
     logo="https://www.baidu.com"
   >
-  <div style="background: #f00;width:100px;height:100px;" slot="avatarDropDown">abc</div>
+  <div class="operationDropdown" slot="avatarDropDown">
+    <ul>
+      <li class="bold">退出登录</li>
+    </ul>
+  </div>
   </Layout>
 </template>
 
@@ -33,6 +37,9 @@ export default {
     //     duration: 3000
     //   })
     // }
+      logout () {
+          alert(1)
+      }
   }
 }
 </script>

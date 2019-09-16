@@ -5,7 +5,7 @@
           <a href="">
             <img :src="logo" alt="">
           </a>
-          <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:0;" @mouseenter="showDropdown1 = true" @mouseleave="showDropdown1 = false">
+          <div style="min-width:92px;padding-top:60px; position: absolute; top:0; left:10px;z-index:10000" @mouseenter="showDropdown1 = true" @mouseleave="showDropdown1 = false">
               <slot v-if="showDropdown1" name="operation"></slot>
           </div>
         </div>
@@ -83,6 +83,29 @@
 </script>
 
 <style scoped lang="less">
+  .operationDropdown{
+    background: #f7f7f7;width:300px;min-height:200px;box-shadow: 0 1px 6px rgba(0,0,0,.2);
+    border-radius: 2px;
+    position: relative;
+    padding:5px 0;
+    &:before{content:" ";width:0;height:0;position:absolute;left:30px;top:-12px;border:6px solid transparent;border-bottom-color:#fff}
+    li{
+      width:100%;
+      height:58px;
+      line-height: 58px;
+      padding:0 18px;
+      user-select: none;
+      cursor: pointer;
+      font-size:14px;
+      &.bold{
+        font-weight: 700;
+      }
+      &:hover{
+        color:#fff;
+        background: #2c7dff;
+      }
+    }
+  }
   .leftNav{
     height:100%;
   }
