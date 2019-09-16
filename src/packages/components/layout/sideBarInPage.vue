@@ -72,7 +72,7 @@
         },
         methods: {
             getNavDataByPath () {
-                let path = this.$route.path;
+                let path = this.$route.fullPath;
                 let nav = this.nav;
                 let topLevelHasUrl = false;
                 let name = '';
@@ -96,7 +96,7 @@
                 }
             },
             loopUrlLevel2 (l1, l2, l3, l4) {
-              let path = this.$route.path;
+              let path = this.$route.fullPath;
               for (let i = 0; i < l2.length; i++) {
                   for (let j = 0; j < l2[i].child.length; j++) {
                       if (l2[i].child[j].url == path) {
