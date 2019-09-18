@@ -222,6 +222,8 @@
           color: #323233;
           border-radius: 2px;
           font-size: 14px;
+          text-align: left;
+          padding-left:38px;
           &:hover{
             color:@blueFontColor
           }
@@ -289,7 +291,7 @@
         color: #323233;
         border-radius: 2px;
         font-size: 14px;
-        text-align: center;
+        text-align: left;
         &:hover{
           color:@blueFontColor
         }
@@ -421,7 +423,7 @@
         color: #323233;
         border-radius: 2px;
         font-size: 14px;
-        text-align: center;
+        text-align: left;
         &:hover{
           color:@blueFontColor
         }

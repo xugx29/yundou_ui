@@ -61,7 +61,6 @@
             setTimeout(() => {
                 this.menuText = data.alias;
                 this.childNavData = data.data
-                // console.log(this.childNavData)
             }, 3)
         },
         setNavData () {
