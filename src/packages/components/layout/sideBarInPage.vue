@@ -98,11 +98,17 @@
             loopUrlLevel2 (l1, l2, l3, l4) {
               let path = this.$route.fullPath;
               for (let i = 0; i < l2.length; i++) {
-                  for (let j = 0; j < l2[i].child.length; j++) {
-                      if (l2[i].child[j].url == path) {
-                          console.log(l3)
+                  if (l2[i].child.length == 0) {
+                      if (l2[i].url == path) {
                           this.currentNavData = l3
                           this.currentTopLevelName = l4.name;
+                      }
+                  } else {
+                      for (let j = 0; j < l2[i].child.length; j++) {
+                          if (l2[i].child[j].url == path) {
+                              this.currentNavData = l3
+                              this.currentTopLevelName = l4.name;
+                          }
                       }
                   }
               }
@@ -120,7 +126,7 @@
                 setTimeout(() => {
                     this.menuText = data.alias;
                     this.childNavData = data.data
-                    console.log(this.childNavData)
+                    // console.log(this.childNavData)
                 }, 3)
             },
             setNavData () {
@@ -283,12 +289,7 @@
         color: #323233;
         border-radius: 2px;
         font-size: 14px;
-        text-align: left;
-        padding-left:38px;
-        &.active{
-          color:#323233;
-          background-color: #ebedf0;
-        }
+        text-align: center;
         &:hover{
           color:@blueFontColor
         }

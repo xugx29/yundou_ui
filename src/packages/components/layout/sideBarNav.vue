@@ -20,7 +20,7 @@
         <div class="parentsName">{{childNavData && childNavData.child && childNavData.child.length != 0 ? childNavData.alias : menuText}}</div>
         <ul>
           <li v-for="(val, key) in childNavData" :key="key">
-            <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
+            <span v-if="Object.keys(val.child).length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
             <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
             <ul class="navItemList" v-if="val.child.length != 0">
               <li v-for="(v, k) in val.child" :key="k">
@@ -45,7 +45,7 @@
     },
     props: ['nav', 'logo'],
     created () {
-      console.log(this.nav)
+      // console.log(this.nav)
     },
     methods: {
         toggleSecMenu ($event) {
@@ -61,7 +61,7 @@
             setTimeout(() => {
                 this.menuText = data.alias;
                 this.childNavData = data.data
-                console.log(this.childNavData)
+                // console.log(this.childNavData)
             }, 3)
         },
         setNavData () {

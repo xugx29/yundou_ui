@@ -76,6 +76,10 @@
                     for (let i = 0; i < nav.length; i++) {
                         if (Object.keys(nav[i].child).length != 0) {
                             this.loopUrlLevel2(nav[i].child.data, nav[i].child.data)
+                        } else {
+                            if (this.$route.fullPath == nav[i].url) {
+                                this.pageName = nav[i].name;
+                            }
                         }
                         // this.loopUrl()
                     }
@@ -83,13 +87,22 @@
                     this.pageName = name;
                 }
             },
-            loopUrlLevel2 (l1, l2, l3) {
+            loopUrlLevel2 (l1, l2) {
                 let path = this.$route.fullPath;
+                // console.log(path)
                 for (let i = 0; i < l2.length; i++) {
-                    for (let j = 0; j < l2[i].child.length; j++) {
-                        if (l2[i].child[j].url == path) {
-                            console.log(l2[i].child[j].name)
-                            this.pageName = l2[i].child[j].name
+                    // console.log(l2[i].child)
+                    if (l2[i].child.length == 0) {
+                        // console.log(path, 22)
+                        if (l2[i].url == path) {
+                            this.pageName = l2[i].name
+                        }
+                    } else {
+                        for (let j = 0; j < l2[i].child.length; j++) {
+                            if (l2[i].child[j].url == path) {
+                                // console.log(l2[i].child[j].name)
+                                this.pageName = l2[i].child[j].name
+                            }
                         }
                     }
                 }
