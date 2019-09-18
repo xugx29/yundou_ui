@@ -11,7 +11,7 @@
         </div>
         <ul class="navList">
           <li class="topLevelLi" v-for="(item, index) in nav" :key="index" @mouseenter="setNavDataByHover(item.child, item.name)" @mouseleave="clearNavData">
-            <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url, query: {t: 1}}">{{item.name}}</router-link></span>
+            <i :class="item.iconClass" class="navIcon"></i><span v-if="Object.keys(item.child).length == 0"><router-link :to="{path: item.url}">{{item.name}}</router-link></span>
             <span v-else>{{item.name}}</span>
           </li>
         </ul>

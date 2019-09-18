@@ -33,7 +33,7 @@
     },
     watch: {
         $route (to, from) {
-            if (to.path != '/index' && to.path != '/v5/index' && to.path.indexOf('/printDownload') == -1) {
+            if (to.path != '/index' && to.path != '/v5/index') {
                 this.index = false
             } else {
                 this.index = true
@@ -42,7 +42,7 @@
         }
     },
     created () {
-        if (this.$route.path != '/index' && this.$route.path != '/v5/index' && this.$route.path.indexOf('/printDownload') == -1) {
+        if (this.$route.path != '/index' && this.$route.path != '/v5/index') {
             this.index = false
         } else {
             this.index = true
