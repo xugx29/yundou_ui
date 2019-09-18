@@ -492,8 +492,8 @@
           margin-right: 5px;
         }
         &.active{
-          background: #fff;
-          color:#333;
+          background: #fff !important;
+          color:#333 !important;
           a{
             color:#333;
           }
