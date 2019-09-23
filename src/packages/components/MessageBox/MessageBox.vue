@@ -1,5 +1,5 @@
 <template>
-  <div class="full-screen-mask" v-if="showBox" :class="{hideMask: !showMask}">
+  <div class="full-screen-mask-dialog" v-if="showBox" :class="{hideMask: !showMask}">
     <div class="MessageBox">
       <div class="MessageTitleBox yd-blue-bg">
         <span>{{title}}</span>
