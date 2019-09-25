@@ -23,7 +23,7 @@
           <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
           <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
           <ul class="navItemList" v-if="val.child.length != 0">
-            <li v-for="(v, k) in val.child" :key="k">
+            <li v-if="!v.hide" v-for="(v, k) in val.child" :key="k">
               <router-link :class="{active: v.url == $route.path}" :to="{path: v.url, query: {}}">{{v.name}}</router-link>
             </li>
           </ul>
@@ -37,7 +37,7 @@
           <span v-if="val.child.length == 0" class="secLinkUrl" style="padding-left:28px;"><router-link :to="{path: val.url, query: {}}">{{val.name}}</router-link></span>
           <span @click="toggleSecMenu" v-else><i @click.stop></i>{{val.name}}</span>
           <ul class="navItemList" v-if="val.child.length != 0">
-            <li v-for="(v, k) in val.child" :key="k">
+            <li v-if="!v.hide" v-for="(v, k) in val.child" :key="k">
               <router-link :class="{active: v.url == $route.path}" :to="{path: v.url, query: {}}">{{v.name}}</router-link>
             </li>
           </ul>
@@ -202,7 +202,7 @@
     }
     ul.navItemList{
       overflow: hidden;
-      max-height:300px;
+      /*max-height:300px;*/
       transition: all .2s ease;
       li{
         position: relative;
