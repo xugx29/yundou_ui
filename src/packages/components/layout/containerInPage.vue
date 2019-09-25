@@ -1,7 +1,8 @@
 <template>
   <div class="appContainer" :class="{ml92: tpl}">
       <header class="subtitle">
-        <span class="subtitleText">{{pageName}}</span>
+        <span class="subtitleText" v-if="!navGroup">{{pageName}}</span>
+        <span class="subtitleText" v-else>{{navGroupName}}</span>
         <div class="helpCenter" v-if="!showHelpCenter && serviceModule" @click="showHelpCenter = !showHelpCenter">
           <span class="helpIcon"></span>
           <span>帮助和服务</span>
@@ -28,12 +29,13 @@
 </template>
 <script>
     export default {
-        props: ['nav', 'serviceModule'],
+        props: ['nav', 'serviceModule', 'navGroup'],
         data () {
             return {
                 pageName: '',
                 showHelpCenter: false,
-                tpl: false
+                tpl: false,
+                navGroupName: ''
             }
         },
         watch: {
@@ -43,7 +45,11 @@
                 } else {
                     this.tpl = false;
                 }
-                this.getPageName();
+                if (!this.navGroup) {
+                    this.getPageName();
+                } else {
+                    this.getNavUrlGroup();
+                }
             }
         },
         created () {
@@ -52,7 +58,11 @@
             } else {
                 this.tpl = false;
             }
-            this.getPageName();
+            if (!this.navGroup) {
+                this.getPageName();
+            } else {
+                this.getNavUrlGroup();
+            }
             if (document.body.clientWidth <= 1400) {
                 this.showHelpCenter = false;
             } else {
@@ -60,6 +70,34 @@
             }
         },
         methods: {
+            getNavUrlGroup () {
+                this.navGroupName = ''
+                let path = this.$route.fullPath;
+                let nav = this.nav;
+                let name = '';
+                let topLevelHasUrl = false;
+                for (let i = 0; i < nav.length; i++) {
+                    if (nav[i].url == path) {
+                        name = nav[i].name;
+                        topLevelHasUrl = true;
+                        break;
+                    }
+                }
+                if (!topLevelHasUrl) {
+                    for (let i = 0; i < nav.length; i++) {
+                        if (Object.keys(nav[i].child).length != 0) {
+                            this.loopUrlLevelGroup(nav[i].child.data, nav[i].child.data, nav[i])
+                        } else {
+                            if (this.$route.fullPath == nav[i].url) {
+                                this.navGroupName += nav[i].name;
+                            }
+                        }
+                        // this.loopUrl()
+                    }
+                } else {
+                    this.navGroupName += name;
+                }
+            },
             getPageName () {
                 let path = this.$route.fullPath;
                 let nav = this.nav;
@@ -102,6 +140,26 @@
                             if (l2[i].child[j].url == path) {
                                 // console.log(l2[i].child[j].name)
                                 this.pageName = l2[i].child[j].name
+                            }
+                        }
+                    }
+                }
+            },
+            loopUrlLevelGroup (l1, l2, l3) {
+                let path = this.$route.fullPath;
+                // console.log(path)
+                for (let i = 0; i < l2.length; i++) {
+                    // console.log(l2[i].child)
+                    if (l2[i].child.length == 0) {
+                        // console.log(path, 22)
+                        if (l2[i].url == path) {
+                            this.navGroupName = l3.name + '/' + l2[i].name + '/' + l2[i].name
+                        }
+                    } else {
+                        for (let j = 0; j < l2[i].child.length; j++) {
+                            if (l2[i].child[j].url == path) {
+                                // console.log(l2[i].child[j].name)
+                                this.navGroupName = l3.name + '/' + l2[i].name + '/' + l2[i].child[j].name
                             }
                         }
                     }

@@ -14,7 +14,7 @@
           <slot name="avatarDropDown"></slot>
         </template>
       </sideBarInPage>
-      <containerInPage :nav="nav" :serviceModule="serviceModule"></containerInPage>
+      <containerInPage :nav="nav" :serviceModule="serviceModule" :navGroup="navGroup"></containerInPage>
     </template>
   </div>
 </template>
@@ -48,7 +48,7 @@
             this.index = true
         }
     },
-    props: ['notice', 'nav', 'serviceModule', 'logo'],
+    props: ['notice', 'nav', 'serviceModule', 'logo', 'navGroup'],
     methods: {
     },
     components: {

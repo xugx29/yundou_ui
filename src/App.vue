@@ -3,6 +3,7 @@
     :notice="{show: true, text1: '111', text2: '222'}"
     :nav="menu"
     :serviceModule="true"
+    :navGroup="false"
     logo="https://www.baidu.com"
   >
   <div class="operationDropdown" slot="avatarDropDown">
