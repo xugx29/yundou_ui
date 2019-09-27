@@ -51,6 +51,7 @@
     position: relative;
     margin-left: 92px;
     margin-right:0;
+    height:100%;
     -webkit-transition: all .2s;
     -moz-transition: all .2s;
     transition: all .2s;
@@ -129,13 +130,15 @@
     }
     .viewContainer{
       padding: 20px;
-      height:500px;
+      height:calc(~"100% - 56px");
       display: flex;
+      &.hasNotice{
+        height:calc(~"100% - 112px") !important;
+      }
       .viewMain{
         flex:1;
         min-width: 1060px;
         height:100%;
-        background:#fff;
         margin-right:20px;
       }
       .ad{
