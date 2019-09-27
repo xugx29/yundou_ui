@@ -6,7 +6,14 @@
           <slot name="avatarDropDown"></slot>
         </div>
       </sideBarNav>
-      <container :notice="notice"></container>
+      <container :notice="notice">
+        <template slot="companyName">
+          <slot name="companyNameDiv"></slot>
+        </template>
+        <template slot="accountPeriod">
+          <slot name="accountPeriodDiv"></slot>
+        </template>
+      </container>
     </template>
     <template v-if="!index">
       <sideBarInPage :nav="nav" :logo="logo">

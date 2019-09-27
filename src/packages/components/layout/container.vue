@@ -9,15 +9,14 @@
         </div>
       </header>
       <div class="header">
-        <div class="panel">
-          <h1 class="companyName">芸豆会计</h1>
-          <div class="tag">手工版</div>
-        </div>
-        <div class="companyOperation">
-          <span class="userIcon"></span>
-          <span class="userName">徐光星</span>
-          <span class="arrowIcon"></span>
-        </div>
+        <slot name="companyName"></slot>
+<!--        <div class="companyOperation">-->
+<!--              <span class="accountPeriod"></span>-->
+<!--          <span class="userIcon"></span>-->
+<!--          <span class="userName">徐光星</span>-->
+<!--          <span class="arrowIcon"></span>-->
+<!--        </div>-->
+        <slot name="accountPeriod"></slot>
       </div>
       <div class="viewContainer">
         <div class="viewMain">
@@ -134,7 +133,7 @@
       display: flex;
       .viewMain{
         flex:1;
-        min-width: 1360px;
+        min-width: 1060px;
         height:100%;
         background:#fff;
         margin-right:20px;
