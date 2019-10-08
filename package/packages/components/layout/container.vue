@@ -144,7 +144,7 @@
       .ad{
         width:240px;
         flex-shrink: 0;
-        background: #fff;
+        /*background: #fff;*/
       }
     }
   }
