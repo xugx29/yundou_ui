@@ -22,7 +22,9 @@
         <div class="viewMain">
           <router-view/>
         </div>
-        <div class="ad"></div>
+        <div class="ad">
+          <slot name=""></slot>
+        </div>
       </div>
   </div>
 </template>
