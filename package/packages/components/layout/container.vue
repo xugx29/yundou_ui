@@ -23,7 +23,7 @@
           <router-view/>
         </div>
         <div class="ad">
-          <slot name=""></slot>
+          <slot name="helpCenterForIndex"></slot>
         </div>
       </div>
   </div>

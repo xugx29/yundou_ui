@@ -13,6 +13,9 @@
         <template slot="accountPeriod">
           <slot name="accountPeriodDiv"></slot>
         </template>
+        <template slot="helpCenterForIndex">
+          <slot name="helpCenterForIndexDiv"></slot>
+        </template>
       </container>
     </template>
     <template v-if="!index">
