@@ -16,6 +16,9 @@
         <template slot="helpCenterForIndex">
           <slot name="helpCenterForIndexDiv"></slot>
         </template>
+        <template slot="helpCenter">
+          <slot name="helpCenterDiv"></slot>
+        </template>
       </container>
     </template>
     <template v-if="!index">

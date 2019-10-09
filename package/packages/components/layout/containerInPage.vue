@@ -20,7 +20,9 @@
               <span>帮助和服务</span>
             </div>
             <div>
-              <span class="toggleHelpCenter"></span>
+              <span class="toggleHelpCenter">
+                <slot name="helpCenter"></slot>
+              </span>
             </div>
           </div>
         </div>
