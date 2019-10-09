@@ -21,10 +21,10 @@
             </div>
             <div>
               <span class="toggleHelpCenter">
-                <slot name="helpCenter"></slot>
               </span>
             </div>
           </div>
+          <slot name="helpCenter"></slot>
         </div>
       </div>
   </div>
