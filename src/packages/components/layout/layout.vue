@@ -16,9 +16,6 @@
         <template slot="helpCenterForIndex">
           <slot name="helpCenterForIndexDiv"></slot>
         </template>
-        <template slot="helpCenter">
-          <slot name="helpCenterDiv"></slot>
-        </template>
       </container>
     </template>
     <template v-if="!index">
@@ -27,7 +24,11 @@
           <slot name="avatarDropDown"></slot>
         </template>
       </sideBarInPage>
-      <containerInPage :nav="nav" :serviceModule="serviceModule" :navGroup="navGroup"></containerInPage>
+      <containerInPage :nav="nav" :serviceModule="serviceModule" :navGroup="navGroup">
+        <template slot="helpCenter">
+          <slot name="helpCenterDiv"></slot>
+        </template>
+      </containerInPage>
     </template>
   </div>
 </template>
