@@ -19,12 +19,12 @@ const createLintingRule = () => ({
 })
 module.exports = {
   entry: {
-    'ydui': './src/packages/index.js'
+    'reportSheet': './src/packages/index.js'
   },
   output: {
     path: path.resolve(__dirname, '../package'),
     publicPath: '/package/',
-    library: 'ydui',
+    library: 'reportSheet',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
