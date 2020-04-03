@@ -122,6 +122,24 @@
           }
       }
     },
+    filters: {
+        currency (value, placeholder) {
+            if (isNaN(value)) {
+                return value;
+            }
+            value = parseFloat(value);
+            placeholder = placeholder || '';
+            if (value === 0 || isNaN(value)) {
+                return placeholder;
+            }
+            value = value.toFixed(2);
+            if (value === 0) {
+                return placeholder;
+            }
+            let reg = /(\d{1,3})(?=(\d{3})+(?:$|\D))/g;
+            return value.replace(reg, '$1,');
+        }
+    },
     created () {
         this.period = this.currentPeriod.toString()
         this.initData();
