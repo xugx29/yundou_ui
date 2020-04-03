@@ -1,13 +1,12 @@
 {
   "name": "nga-report-sheet",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "nga-report-sheet",
   "author": "gxxu",
   "main": "package/reportSheet.min.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "unit": "karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "package:dev": "webpack --config build/package.dev.config.js",
