@@ -1,11 +1,8 @@
-import './styles/global.less';
-import './styles/color.less';
-import './styles/varibles.less';
-import './styles/mixin.less';
-import './styles/normalize.less';
 import ReportBalance from './components/ReportBalance/index.js'
+import Profits from './components/Profits/index.js'
 const components = [
-  ReportBalance
+  ReportBalance,
+  Profits
 ];
 const install = function (Vue) {
   components.map((c) => {
@@ -18,9 +15,11 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 export default {
   install,
-  ReportBalance
+  ReportBalance,
+  Profits
 }
 export {
   install,
-  ReportBalance
+  ReportBalance,
+  Profits
 }

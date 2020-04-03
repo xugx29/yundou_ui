@@ -1,6 +1,6 @@
 <template>
  <div style='width: 100%;height: 100%;'>
-   <reportBalance :initPeriod="201010" :currentPeriod='201012' :reportData='data'></reportBalance>
+   <profits :initPeriod="201010" :currentPeriod='201012' :reportData='data'></profits>
  </div>
 </template>
 

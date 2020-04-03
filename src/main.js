@@ -3,15 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import {DatePicker, Table, TableColumn, Popover} from 'element-ui';
+import {DatePicker, Table, TableColumn, Popover, Dropdown, DropdownItem, DropdownMenu} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
-import {ReportBalance} from './packages/index'
+import {ReportBalance, Profits} from './packages/index'
 Vue.use(ReportBalance);
-
+Vue.use(Profits);
+console.log(Profits)
 Vue.use(DatePicker)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Popover)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -81,7 +81,7 @@
 
 <script>
   export default {
-    name: 'profits',
+    name: 'cashflow',
     data () {
       return {
           type: 1, // 1月报 2季报
