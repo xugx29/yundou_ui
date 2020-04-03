@@ -355,6 +355,12 @@
 </script>
 <style lang="less">
   .profitsContainer{
+    .text-center{
+      text-align: center;
+    }
+    .bold{
+      font-weight: bold;
+    }
     .el-date-editor.el-input, .el-date-editor.el-input__inner{
       width:120px !important;
     }

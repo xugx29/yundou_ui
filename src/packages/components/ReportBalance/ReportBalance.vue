@@ -188,6 +188,12 @@
 </script>
 <style lang="less">
   .reportBalance{
+    .text-center{
+      text-align: center;
+    }
+    .bold{
+      font-weight: bold;
+    }
     .el-date-editor.el-input, .el-date-editor.el-input__inner{
       width:120px !important;
     }
