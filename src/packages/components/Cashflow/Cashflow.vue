@@ -193,116 +193,116 @@
             let endMonth = currentPeriod.toString().substr(4, 2) - 0;
             if (startMonth <= 3) {
                 quarterStartData = [{
-                    startDate: startYear + '01',
-                    endDate: startYear + '03',
+                    startPeriod: startYear + '01',
+                    endPeriod: startYear + '03',
                     quarterValue: startYear + '年第一季度'
                 },
                     {
-                        startDate: startYear + '04',
-                        endDate: startYear + '06',
+                        startPeriod: startYear + '04',
+                        endPeriod: startYear + '06',
                         quarterValue: startYear + '年第二季度'
                     },
                     {
-                        startDate: startYear + '07',
-                        endDate: startYear + '09',
+                        startPeriod: startYear + '07',
+                        endPeriod: startYear + '09',
                         quarterValue: startYear + '年第三季度'
                     },
                     {
-                        startDate: startYear + '10',
-                        endDate: startYear + '12',
+                        startPeriod: startYear + '10',
+                        endPeriod: startYear + '12',
                         quarterValue: startYear + '年第四季度'
                     }]
                 quarterSelect = quarterStartData;
             } else if (startMonth <= 6) {
                 quarterStartData = [{
-                    startDate: startYear + '04',
-                    endDate: startYear + '06',
+                    startPeriod: startYear + '04',
+                    endPeriod: startYear + '06',
                     quarterValue: startYear + '年第二季度'
                 },
                     {
-                        startDate: startYear + '07',
-                        endDate: startYear + '09',
+                        startPeriod: startYear + '07',
+                        endPeriod: startYear + '09',
                         quarterValue: startYear + '年第三季度'
                     },
                     {
-                        startDate: startYear + '10',
-                        endDate: startYear + '12',
+                        startPeriod: startYear + '10',
+                        endPeriod: startYear + '12',
                         quarterValue: startYear + '年第四季度'
                     }]
                 quarterSelect = quarterStartData;
             } else if (startMonth <= 9) {
                 quarterStartData = [{
-                    startDate: startYear + '07',
-                    endDate: startYear + '09',
+                    startPeriod: startYear + '07',
+                    endPeriod: startYear + '09',
                     quarterValue: startYear + '年第三季度'
                 },
                     {
-                        startDate: startYear + '10',
-                        endDate: startYear + '12',
+                        startPeriod: startYear + '10',
+                        endPeriod: startYear + '12',
                         quarterValue: startYear + '年第四季度'
                     }]
                 quarterSelect = quarterStartData;
             } else {
                 console.log(1);
                 quarterStartData = [{
-                    startDate: startYear + '10',
-                    endDate: startYear + '12',
+                    startPeriod: startYear + '10',
+                    endPeriod: startYear + '12',
                     quarterValue: startYear + '年第四季度'
                 }]
             }
             let quarterEndData = [];
             if (endMonth <= 3) {
                 quarterEndData = [{
-                    startDate: endYear + '01',
-                    endDate: endYear + '03',
+                    startPeriod: endYear + '01',
+                    endPeriod: endYear + '03',
                     quarterValue: endYear + '年第一季度'
                 }];
             } else if (endMonth <= 6) {
                 quarterEndData = [{
-                    startDate: endYear + '01',
-                    endDate: endYear + '03',
+                    startPeriod: endYear + '01',
+                    endPeriod: endYear + '03',
                     quarterValue: endYear + '年第一季度'
                 },
                     {
-                        startDate: endYear + '04',
-                        endDate: endYear + '06',
+                        startPeriod: endYear + '04',
+                        endPeriod: endYear + '06',
                         quarterValue: endYear + '年第二季度'
                     }];
             } else if (endMonth <= 9) {
                 quarterEndData = [{
-                    startDate: endYear + '01',
-                    endDate: endYear + '03',
+                    startPeriod: endYear + '01',
+                    endPeriod: endYear + '03',
                     quarterValue: endYear + '年第一季度'
                 },
                     {
-                        startDate: endYear + '04',
-                        endDate: endYear + '06',
+                        startPeriod: endYear + '04',
+                        endPeriod: endYear + '06',
                         quarterValue: endYear + '年第二季度'
                     },
                     {
-                        startDate: endYear + '07',
-                        endDate: endYear + '09',
+                        startPeriod: endYear + '07',
+                        endPeriod: endYear + '09',
                         quarterValue: endYear + '年第三季度'
                     }];
             } else {
                 quarterEndData = [{
-                    startDate: endYear + '01',
-                    endDate: endYear + '03',
+                    startPeriod: endYear + '01',
+                    endPeriod: endYear + '03',
                     quarterValue: endYear + '年第一季度'
                 },
                     {
-                        startDate: endYear + '04',
-                        endDate: endYear + '06',
+                        startPeriod: endYear + '04',
+                        endPeriod: endYear + '06',
                         quarterValue: endYear + '年第二季度'
                     },
                     {
-                        startDate: endYear + '07',
-                        endDate: endYear + '09',
+                        startPeriod: endYear + '07',
+                        endPeriod: endYear + '09',
                         quarterValue: endYear + '年第三季度'
                     },
                     {
-                        startDate: endYear + '10',
-                        endDate: endYear + '12',
+                        startPeriod: endYear + '10',
+                        endPeriod: endYear + '12',
                         quarterValue: endYear + '年第四季度'
                     }];
             }
@@ -310,23 +310,23 @@
                 quarterSelect = quarterStartData;
                 for (let year = (startYear - 0 + 1); year < endYear; year++) {
                     let quarterMiddleDate = [{
-                        startDate: year + '01',
-                        endDate: year + '03',
+                        startPeriod: year + '01',
+                        endPeriod: year + '03',
                         quarterValue: year + '年第一季度'
                     },
                         {
-                            startDate: year + '04',
-                            endDate: year + '06',
+                            startPeriod: year + '04',
+                            endPeriod: year + '06',
                             quarterValue: year + '年第二季度'
                         },
                         {
-                            startDate: year + '07',
-                            endDate: year + '09',
+                            startPeriod: year + '07',
+                            endPeriod: year + '09',
                             quarterValue: year + '年第三季度'
                         },
                         {
-                            startDate: year + '10',
-                            endDate: year + '12',
+                            startPeriod: year + '10',
+                            endPeriod: year + '12',
                             quarterValue: year + '年第四季度'
                         }];
                     for (let val of quarterMiddleDate) {
