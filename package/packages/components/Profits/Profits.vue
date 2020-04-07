@@ -42,7 +42,7 @@
       >
         <el-table-column prop="accountCode" label="项目" header-align="center">
           <template slot-scope="scope">
-              <span class="reportsItemName" :class="{'text-center': scope.row.style.indent == 'center', bold: scope.row.style.bold == 1}" :style="{'text-indent': scope.row.style.indent == 'center' ? 0 : (parseInt(scope.row.style.indent) * 18) + 'px'}">
+              <span class="reportsItemName" :class="{'text-center': scope.row.style && scope.row.style.indent == 'center', bold: scope.row.style && scope.row.style.bold == 1}" :style="{'text-indent':scope.row.style &&  scope.row.style.indent == 'center' ? 0 : (parseInt(scope.row.style.indent) * 18) + 'px'}">
                 {{scope.row.itemName}}
               </span>
           </template>
@@ -155,14 +155,10 @@
         toggleReportType (type) {
             this.type = type;
             if (type == 2) {
-                this.startPeriod = this.quarterList[0].startDate;
-                this.endPeriod = this.quarterList[0].endDate;
+                console.log(this.quarterList)
+                this.startPeriod = this.quarterList[0].startPeriod;
+                this.endPeriod = this.quarterList[0].endPeriod;
                 this.quarterValue = this.quarterList[0].quarterValue;
-                console.log('季报', {
-                    type: 'quarter',
-                    startPeriod: this.startPeriod,
-                    endPeriod: this.endPeriod
-                })
                 this.$emit('updateReportData', {
                     type: 'quarter',
                     startPeriod: this.startPeriod,

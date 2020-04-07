@@ -17,7 +17,7 @@
     </div>
     <div class="reportContent">
       <el-table
-        :data="data"
+        :data="rdata"
         border
         height="100%"
         style="width: 100%;font-size: 12px;font-weight:400;color:rgba(51,51,51,1);"
@@ -26,7 +26,7 @@
       >
         <el-table-column prop="accountCode" label="资产" header-align="center">
           <template slot-scope="scope">
-              <span class="reportsItemName" :class="{'text-center': scope.row.left.style.indent == 'center', bold: scope.row.left.style.bold == 1}" :style="{'text-indent': scope.row.left.style.indent == 'center' ? 0 : (parseInt(scope.row.left.style.indent) * 18) + 'px'}">
+              <span class="reportsItemName" :class="{'text-center': scope.row.style && scope.row.style.indent == 'center', bold: scope.row.style && scope.row.style.bold == 1}" :style="{'text-indent':scope.row.style &&  scope.row.style.indent == 'center' ? 0 : (parseInt(scope.row.style.indent) * 18) + 'px'}">
                 {{scope.row.left.itemName}}
               </span>
           </template>
@@ -108,7 +108,7 @@
     name: 'reportBalance',
     data () {
       return {
-          data: [],
+          rdata: [],
           period: '',
           pickerOptions: {
               disabledDate: (time) => {
@@ -144,6 +144,11 @@
         this.period = this.currentPeriod.toString()
         this.initData();
     },
+    watch: {
+      reportData (v, ov) {
+        this.initData();
+      }
+    },
     props: ['initPeriod', 'currentPeriod', 'reportData'],
     methods: {
         initData () {
@@ -164,7 +169,7 @@
                 obj.right = right[i]
                 arr.push(obj)
             }
-            this.data = arr;
+            this.rdata = arr;
         },
         getRowClass ({row, column, rowIndex, columnIndex}) {
             if (rowIndex == 0) {

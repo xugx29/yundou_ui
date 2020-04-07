@@ -1,6 +1,6 @@
 {
   "name": "nga-report-sheet",
-  "version": "0.0.14",
+  "version": "0.0.20",
   "description": "nga-report-sheet",
   "author": "gxxu",
   "main": "package/reportSheet.min.js",
