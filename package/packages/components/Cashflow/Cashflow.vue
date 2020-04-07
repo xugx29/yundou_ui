@@ -33,8 +33,9 @@
     </div>
     <div class="reportContent">
       <el-table
-        :data="reportData"
+        :data="tableData"
         border
+        v-if="tableData.length != 0"
         height="100%"
         style="width: 100%;font-size: 12px;font-weight:400;color:rgba(51,51,51,1);"
         :header-cell-style="getRowClass"
@@ -42,7 +43,7 @@
       >
         <el-table-column prop="accountCode" label="项目" header-align="center">
           <template slot-scope="scope">
-              <span class="reportsItemName" :class="{'text-center': scope.row.style && scope.row.style.indent == 'center', bold: scope.row.style && scope.row.style.bold == 1}" :style="{'text-indent':scope.row.style &&  scope.row.style.indent == 'center' ? 0 : (parseInt(scope.row.style.indent) * 18) + 'px'}">
+              <span class="reportsItemName" :class="{'text-center': scope.row.style.indent == 'center', bold: scope.row.style.bold == 1}" :style="{'text-indent': scope.row.style.indent == 'center' ? 0 : (parseInt(scope.row.style.indent) * 18) + 'px'}">
                 {{scope.row.itemName}}
               </span>
           </template>
@@ -84,6 +85,7 @@
     name: 'cashflow',
     data () {
       return {
+          tableData: [],
           type: 1, // 1月报 2季报
           quarterValue: '',
           quarterList: null,
@@ -121,11 +123,16 @@
     created () {
         this.period = this.currentPeriod.toString()
         this.quarterList = this.createQuarterList(this.initPeriod, this.currentPeriod)
+        this.tableData = JSON.parse(JSON.stringify(this.reportData))
+    },
+    watch: {
+      reportData (v, ov) {
+        this.tableData = JSON.parse(JSON.stringify(v))
+      }
     },
     props: ['initPeriod', 'currentPeriod', 'reportData'],
     methods: {
         changePeriod (date) {
-            console.log('更新月报', date)
             this.$emit('updateReportData', {
                 type: 'month',
                 accountPeriod: date
@@ -139,12 +146,6 @@
             return cdate.getDate();
         },
         handleCommand (command) {
-            console.log(command)
-            console.log('季报', {
-                type: 'quarter',
-                startPeriod: command.startDate,
-                endPeriod: command.endDate
-            })
             this.quarterValue = command.quarterValue;
             this.$emit('updateReportData', {
                 type: 'quarter',
@@ -165,7 +166,6 @@
                 })
             }
             if (type == 1) {
-                console.log('更新月报', this.period)
                 this.$emit('updateReportData', {
                     type: 'month',
                     accountPeriod: this.period
@@ -238,7 +238,6 @@
                     }]
                 quarterSelect = quarterStartData;
             } else {
-                console.log(1);
                 quarterStartData = [{
                     startPeriod: startYear + '10',
                     endPeriod: startYear + '12',

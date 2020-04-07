@@ -17,8 +17,9 @@
     </div>
     <div class="reportContent">
       <el-table
-        :data="data"
+        :data="tableData"
         border
+        v-if="tableData.length != 0"
         height="100%"
         style="width: 100%;font-size: 12px;font-weight:400;color:rgba(51,51,51,1);"
         :header-cell-style="getRowClass"
@@ -108,7 +109,7 @@
     name: 'reportBalance',
     data () {
       return {
-          data: [],
+        tableData: [],
           period: '',
           pickerOptions: {
               disabledDate: (time) => {
@@ -144,10 +145,15 @@
         this.period = this.currentPeriod.toString()
         this.initData();
     },
+    watch: {
+      reportData () {
+        this.initData();
+      }
+    },
     props: ['initPeriod', 'currentPeriod', 'reportData'],
     methods: {
         initData () {
-            let data = this.reportData
+            let data = JSON.parse(JSON.stringify(this.reportData))
             let left = [];
             let right = [];
             let arr = [];
@@ -164,7 +170,7 @@
                 obj.right = right[i]
                 arr.push(obj)
             }
-            this.data = arr;
+            this.tableData = arr;
         },
         getRowClass ({row, column, rowIndex, columnIndex}) {
             if (rowIndex == 0) {
