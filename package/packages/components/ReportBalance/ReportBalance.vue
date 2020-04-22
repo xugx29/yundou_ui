@@ -19,7 +19,7 @@
       <el-table
         :data="tableData"
         border
-        v-if="tableData.length != 0"
+        v-if="tableData.length != 0 && tableData[0].left && tableData[0].right"
         height="100%"
         style="width: 100%;font-size: 12px;font-weight:400;color:rgba(51,51,51,1);"
         :header-cell-style="getRowClass"
